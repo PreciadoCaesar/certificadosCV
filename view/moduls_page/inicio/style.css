@@ -1,0 +1,489 @@
+/* Variables CSS (pueden coexistir con tu variable.css) */
+:root {
+
+    /* Tipografía */
+    --font-family-body: 'Inter', sans-serif;
+    --font-size-body: 1rem;
+    /* 16px */
+    --line-height-body: 1.5;
+
+    /* Espaciado */
+    --spacing-xs: 0.5rem;
+    /* 8px */
+    --spacing-sm: 1rem;
+    /* 16px */
+    --spacing-md: 1.5rem;
+    /* 24px */
+    --spacing-lg: 2rem;
+    /* 32px */
+    --spacing-xl: 3rem;
+    /* 48px */
+
+    /* Bordes y sombras */
+    --border-radius-sm: 4px;
+    --border-radius-md: 8px;
+    --border-radius-lg: 12px;
+    --border-radius-full: 50%;
+    --shadow-1: 0px 2px 4px rgba(0, 0, 0, 0.08);
+    --shadow-2: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    --shadow-3: 0px 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Bloque: page-wrapper */
+.page-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Bloque: banner */
+.banner {
+    position: relative;
+    height: 250px; /* La altura fija de tu banner */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--md-sys-color-on-primary);
+    text-align: center;
+    overflow: hidden; /* Esto es para la imagen dentro del banner */
+
+    /* Esto es CRÍTICO para que el banner NO se encoja en un contenedor flex */
+    flex-shrink: 0;
+}
+
+.banner__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        linear-gradient(rgba(255, 255, 255, 0.262), rgba(255, 255, 255, 0.605)),
+        url(../../AdminMntInicio/inicioadmin.jpg) no-repeat center center/cover;
+    z-index: 1;
+}
+
+
+.banner__content {
+    position: relative;
+    z-index: 2;
+    padding: var(--spacing-md);
+}
+
+.banner__greeting {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: var(--spacing-xs);
+    color: var(--md-sys-color-primary);
+
+}
+
+.banner__title {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+/* Bloque: card-grid (para las tarjetas de resumen) */
+.card-grid {
+    padding: var(--spacing-lg) var(--spacing-md);
+    max-width: 1200px;
+    margin: -50px auto var(--spacing-lg) auto;
+    /* Mover ligeramente hacia arriba */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-md);
+    position: relative;
+    z-index: 3;
+    /* Asegura que las tarjetas estén por encima del banner */
+}
+
+/* Bloque: card (componente reutilizable) */
+.card {
+    background-color: var(--md-sys-color-surface);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    height: 100%;
+    /* Ocupar la altura completa en la cuadrícula */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* Centrar contenido verticalmente */
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-3);
+}
+
+.card--panel {
+    padding: var(--spacing-md);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.card__body {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    flex-grow: 1;
+    /* Permite que el cuerpo de la tarjeta crezca */
+}
+
+.card__icon-box {
+    background-color: var(--md-sys-color-primary-container);
+    border-radius: var(--border-radius-full);
+    width: 56px;
+    /* Tamaño del icono grande para MD3 */
+    height: 56px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    /* Evita que el icono se encoja */
+}
+
+.card__icon-box .material-symbols-outlined {
+    font-size: 32px;
+    /* Tamaño del icono */
+    color: var(--md-sys-color-on-primary-container);
+}
+
+.card__title {
+    font-size: var(--font-size-label-large);
+    /* Title medium en MD3 */
+    font-weight: 600;
+    color: var(--md-sys-color-on-surface);
+    margin-bottom: var(--spacing-xs);
+}
+
+.card__text {
+    font-size: var(--font-size-body-medium);
+    color: var(--md-sys-color-on-surface-variant);
+}
+
+/* Bloque: table-group-panel */
+.table-group-panel {
+    max-width: 100%;
+    margin: 0 ;
+    padding: 0 var(--spacing-md);
+}
+
+/* Bloque: table-section */
+.table-section {
+    background-color: var(--md-sys-color-surface);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-1);
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+    display: none;
+    /* Controlado por JavaScript para mostrar/ocultar */
+}
+
+.table-section:first-of-type {
+    display: block;
+    /* Muestra la primera sección por defecto */
+}
+
+.table-section__header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-sm);
+    padding-bottom: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+    border-bottom: 1px solid var(--md-sys-color-outline-variant);
+}
+
+.table-section__title-group {
+    flex-grow: 1;
+}
+
+.table-section__title {
+    font-size: 1.25rem;
+    /* Headline small en MD3 */
+    font-weight: 500;
+    color: var(--md-sys-color-on-surface);
+    margin-bottom: var(--spacing-xs);
+}
+
+.table-section__description {
+    font-size: 0.875rem;
+    color: var(--md-sys-color-on-surface-variant);
+    margin-top: -5px;
+    /* Ajuste para el espaciado del p */
+    margin-bottom: 0;
+}
+
+/* Bloque: button (reutiliza estilos del anterior) */
+
+
+.button:hover {
+    box-shadow: var(--shadow-1);
+}
+
+.button:active {
+    box-shadow: none;
+    transform: translateY(1px);
+}
+
+.button--primary {
+    background-color: var(--md-sys-color-primary);
+    color: var(--md-sys-color-on-primary);
+}
+
+.button--primary:hover {
+    background-color: color-mix(in srgb, var(--md-sys-color-primary) 85%, black);
+}
+
+.button--outlined {
+    background-color: transparent;
+    color: var(--md-sys-color-primary);
+    border: 1px solid var(--md-sys-color-outline);
+}
+
+.button--outlined:hover {
+    background-color: var(--md-sys-color-primary-container);
+    color: var(--md-sys-color-on-primary-container);
+    border-color: var(--md-sys-color-primary);
+}
+
+.button--icon-leading .material-symbols-outlined {
+    font-size: 1.25rem;
+}
+
+/* Bloque: controls-bar__actions (reutilizado para grupos de botones) */
+.controls-bar__actions {
+    display: flex;
+    gap: var(--spacing-xs);
+    flex-wrap: wrap;
+    align-items: center;
+    /* Asegura alineación vertical */
+}
+
+/* Bloque: button-group (para agrupar botones, si el buscador está dentro) */
+.button-group {
+    display: flex;
+    gap: var(--spacing-xs);
+    flex-wrap: wrap;
+}
+
+
+/* Bloque: text-input (reutiliza estilos del anterior) */
+.text-input {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 300px;
+    /* Ancho máximo para la barra de búsqueda */
+}
+
+.text-input__icon {
+    position: absolute;
+    left: var(--spacing-xs);
+    color: var(--md-sys-color-on-surface-variant);
+    font-size: 1.25rem;
+}
+
+.text-input__field {
+    width: 100%;
+    padding: 0.625rem var(--spacing-sm) 0.625rem calc(var(--spacing-sm) + 1.5rem);
+    border: 1px solid var(--md-sys-color-outline);
+    border-radius: var(--border-radius-md);
+    background-color: var(--md-sys-color-surface);
+    color: var(--md-sys-color-on-surface);
+    font-family: var(--font-family-body);
+    font-size: var(--font-size-body);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.text-input__field:focus {
+    outline: none;
+    border-color: var(--md-sys-color-primary);
+    box-shadow: 0 0 0 2px var(--md-sys-color-primary-container);
+}
+
+.text-input__field::placeholder {
+    color: var(--md-sys-color-on-surface-variant);
+    opacity: 0.7;
+}
+
+/* Bloque: table-container (reutiliza estilos del anterior) */
+.table-container {
+    border: 1px solid var(--md-sys-color-outline-variant);
+    border-radius: var(--border-radius-md);
+    overflow-x: auto;
+    /* Permite scroll horizontal */
+}
+
+/* Bloque: data-table (reutiliza estilos del anterior) */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 700px;
+    /* Asegura que la tabla no sea demasiado estrecha en móviles */
+}
+
+
+.data-table__row {
+    border-bottom: 1px solid var(--md-sys-color-outline-variant);
+}
+
+.data-table__row:last-child {
+    border-bottom: none;
+}
+
+.data-table__body tr:nth-child(even) {
+    background-color: var(--md-sys-color-surface);
+}
+
+.data-table__body tr:nth-child(odd) {
+    background-color: var(--md-sys-color-background);
+}
+
+.data-table__heading {
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-weight: 500;
+    font-size: 0.875rem;
+    position: relative;
+    cursor: default;
+}
+
+.data-table__heading--sortable {
+    cursor: pointer;
+    user-select: none;
+}
+
+.data-table__heading-text {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.data-table__body td {
+    padding: var(--spacing-sm) var(--spacing-md);
+    vertical-align: middle;
+    white-space: nowrap;
+    /* Evita que el contenido de la celda se rompa */
+}
+
+/* Clase para avatares de usuario en la tabla */
+.user-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: var(--border-radius-md);
+    /* Pequeño redondeo */
+    object-fit: cover;
+    vertical-align: middle;
+}
+
+/* Botón de icono dentro de la tabla */
+.icon-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: var(--border-radius-full);
+    transition: background-color 0.2s ease, color 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-button:hover {
+    background-color: var(--md-sys-color-secondary-container);
+    color: var(--md-sys-color-on-secondary-container);
+}
+
+.icon-button .material-symbols-outlined {
+    font-size: 20px;
+    color: var(--md-sys-color-on-surface-variant);
+}
+
+.icon-button--view .material-symbols-outlined {
+    color: var(--md-sys-color-primary);
+    /* Color específico para botón de ver */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .banner__title {
+        font-size: 1.8rem;
+    }
+
+    .card-grid {
+        padding: var(--spacing-md);
+        display: flex;
+        flex-direction: column;
+        margin-top: -30px;
+    }
+
+    .card--panel {
+        flex-direction: column;
+        text-align: center;
+        gap: var(--spacing-sm);
+    }
+
+    .card__body {
+    display: flex; /* Asegura que es un contenedor flex */
+    flex-direction: row;
+    justify-content: center;  /* Centra horizontalmente */
+    align-items: center;      /* Centra verticalmente */
+    gap: var(--spacing-sm);
+    width: 300px;
+}
+
+
+    .table-section__header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-md);
+        /* Más espacio entre grupos en móvil */
+    }
+
+    .controls-bar__actions,
+    .button-group {
+        width: 100%;
+        justify-content: flex-start;
+        /* Alinear botones a la izquierda */
+    }
+
+    .text-input {
+        max-width: 100%;
+        /* El buscador ocupa todo el ancho */
+    }
+}
+
+@media (max-width: 480px) {
+    .banner {
+        height: 200px;
+    }
+
+    .banner__greeting {
+        font-size: var(--font-size-title-medium);
+    }
+
+    .banner__title {
+        font-size: 2rem;
+    }
+
+    .main-content,
+    .table-group-panel {
+        padding: var(--spacing-sm);
+    }
+
+    .table-section {
+        padding: var(--spacing-sm);
+    }
+
+    .data-table__heading,
+    .data-table__body td {
+        padding: var(--spacing-xs);
+        /* Menos padding en celdas de tabla */
+        font-size: 0.8rem;
+    }
+}

@@ -1,0 +1,221 @@
+/* css/header.css */
+
+.main-header {
+  background-color: var(--md-sys-color-surface);
+  /* Color de superficie de M3 */
+  color: var(--md-sys-color-on-surface);
+  box-shadow: var(--md-sys-elevation-1);
+  /* Sombra sutil de M3 */
+  padding: var(--spacing-m) var(--spacing-l);
+  /* 16px 24px -> 1rem 1.5rem */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* Espacio entre secciones */
+  height: 6.4rem;
+  /* Altura estándar para top app bar en M3: 64px -> 4rem */
+  position: sticky;
+  /* O 'fixed' si quieres que siempre esté visible al hacer scroll */
+  top: 0;
+  width: 100%;
+  z-index: var(--z-index-sticky);
+  /* Asegura que el header esté encima de contenido normal */
+}
+
+.header__left-section {
+  display: flex;
+  align-items: center;
+}
+
+.header__menu-toggle-button {
+  /* Ya definidos en _button.css, pero pueden ser específicos aquí */
+  margin-right: var(--spacing-m);
+  /* 16px -> 1rem */
+  color: var(--md-sys-color-on-surface-variant);
+  /* Asegúrate de que este botón herede los estilos de un botón base para hover/focus */
+  transition: background-color var(--transition-duration-short) var(--transition-easing-standard);
+  border-radius: var(--md-sys-shape-corner-small);
+
+  /* Para un enfoque visual limpio */
+  /* Aplicar estilos de focus-visible */
+  &:focus-visible {
+    outline: 2px solid var(--md-sys-color-primary);
+    outline-offset: 2px;
+  }
+}
+
+.header__menu-toggle-button:hover {
+  background-color: var(--md-sys-color-surface-container-high);
+  /* Fondo sutil al pasar el ratón */
+}
+
+
+.header__logo {
+  font-family: var(--font-family-headline);
+  /* Fuente para el logo, puedes usar otra de tu tipografía M3 */
+  font-size: 2rem;
+  /* 20px -> 1.25rem */
+  font-weight: var(--font-weight-bold);
+  /* 700 */
+  color: var(--md-sys-color-primary);
+  /* Color de acento para el logo */
+  letter-spacing: 0.005rem;
+  /* 0.5px -> 0.03125rem */
+  text-decoration: none;
+  /* Si es un enlace */
+}
+
+.header__right-section {
+  display: flex;
+  align-items: center; position: relative;
+}
+
+.header__notification-button {
+  /* Ya definidos en _button.css */
+  color: var(--md-sys-color-on-surface-variant);
+  margin-right: var(--spacing-xs);
+  /* 8px -> 0.5rem */
+  /* Asegúrate de que este botón también tenga estilos de hover/focus adecuados */
+  transition: background-color var(--transition-duration-short) var(--transition-easing-standard);
+  border-radius: var(--md-sys-shape-corner-small);
+
+  &:focus-visible {
+    outline: 2px solid var(--md-sys-color-primary);
+    outline-offset: 2px;
+  }
+}
+
+.header__notification-button:hover {
+  background-color: var(--md-sys-color-surface-container-high);
+}
+
+.button--logout-button {
+  /* Estilos adicionales para el botón de cerrar sesión si son necesarios */
+  margin-left: var(--spacing-xs);
+  /* 8px -> 0.5rem */
+  background-color: var(--md-sys-color-primary);
+  /* Ejemplo de un botón "filled" */
+  color: var(--md-sys-color-on-primary);
+  box-shadow: var(--md-sys-elevation-0);
+  /* Puedes no querer sombra para este si es parte de la barra */
+  /* Asegurarse de que hereda o define sus propias transiciones y padding/bordes */
+  padding: var(--spacing-s) var(--spacing-m);
+  /* 12px 16px (si es un botón tipo filled) */
+  border-radius: var(--md-sys-shape-corner-medium);
+  /* O small, según el diseño */
+  font-family: var(--font-family-label);
+  /* Label Large para botones */
+  font-size: var(--font-size-label-large);
+  font-weight: var(--font-weight-medium);
+  border: none;
+  cursor: pointer;
+  transition: background-color var(--transition-duration-short) var(--transition-easing-standard),
+    box-shadow var(--transition-duration-short) var(--transition-easing-standard);
+
+  &:focus-visible {
+    outline: 2px solid var(--md-sys-color-primary);
+    outline-offset: 2px;
+  }
+}
+
+.button--logout-button:hover {
+  background-color: var(--md-sys-color-primary-fixed-dim);
+  /* Un tono ligeramente diferente en hover */
+  box-shadow: var(--md-sys-elevation-1);
+}
+
+/* ==================================================================== */
+/* Responsive Design para el Header Principal                         */
+/* ==================================================================== */
+
+@media (min-width: var(--breakpoint-lg)) {
+
+  /* Usando el breakpoint de 992px -> 62rem */
+  /* Ocultar el botón de menú hamburguesa en desktop */
+  .header__menu-toggle-button {
+    display: none;
+  }
+}
+
+/* ==================================================================== */
+/* La barra de "Gestión de Usuarios" (Page Header Content)            */
+/* ==================================================================== */
+
+.page-header-content {
+  background-color: var(--md-sys-color-surface-container-low);
+  /* Un gris claro para el fondo */
+  color: var(--md-sys-color-on-surface-variant);
+  padding: var(--spacing-l) var(--spacing-xl);
+  /* 24px 32px -> 1.5rem 2rem */
+  border-bottom: var(--border-width-thin) var(--border-style-solid) var(--md-sys-color-outline-variant);
+  /* Borde inferior sutil */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  /* Alineación del contenido */
+  margin-bottom: var(--spacing-l);
+  /* 24px -> 1.5rem. Espacio debajo de este header */
+  /* Sombras y otros estilos que le den la apariencia de estar "elevado" */
+  /* box-shadow: var(--md-sys-elevation-0); *-- Opcional, si no quieres una sombra fuerte */
+}
+
+.page-header-content__left {
+  display: flex;
+  align-items: center;
+}
+
+.page-header-content__icon {
+  font-size: 3.2rem;
+  /* 32px -> 2rem. Tamaño del icono grande */
+  margin-right: var(--spacing-m);
+  /* 16px -> 1rem */
+  color: var(--md-sys-color-primary);
+  /* Color del icono */
+}
+
+.page-header-content__title {
+  font-family: var(--font-family-headline);
+  /* Fuente de Headline Small M3 */
+  font-size: var(--font-size-title-large);
+  /* 28px -> 1.75rem (Headline Medium) o 2rem (Headline Large). Ajusté a 1.75rem. */
+  font-weight: var(--font-weight-medium);
+  /* 500 */
+  color: var(--md-sys-color-on-surface);
+  line-height: var(--line-height-tight);
+  /* Para títulos */
+}
+
+.button--none {
+  display: none !important;
+}
+
+
+.ver-mas-container {
+    display: flex !important; /* <--- Crucial: Habilita Flexbox */
+    width: 100%;
+    flex-direction: row !important; /* Esto es lo predeterminado, pero es bueno ser explícito */
+    justify-content: center; /* Centra los elementos horizontalmente */
+    align-items: center; /* Centra los elementos verticalmente (si hay espacio vertical) */
+
+    padding:   auto; /* Ejemplo: 10px arriba/abajo, 0 izquierda/derecha */
+    /* O simplemente padding: 1px; si quieres 1px en todos los lados */
+    border-top: var(--border-width-thin) var(--border-style-solid) var(--md-sys-color-outline-variant);
+    margin-top: 2px;
+}
+
+
+/* Versión móvil (se mantiene igual que antes) */
+@media (max-width: 768px) {
+  .button--none {
+    display: flex !important;
+  }
+
+  .button--active {
+    display: none !important;
+  }
+  .main-header{ 
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+  }
+}

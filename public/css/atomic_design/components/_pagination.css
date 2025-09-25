@@ -1,0 +1,65 @@
+/* css/components/_pagination.css */
+
+.pagination-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    margin-top: 24px; /* Espacio superior */
+    background-color: var(--md-sys-color-surface-container-low);
+    border-radius: var(--md-sys-shape-corner-large);
+    box-shadow: var(--md-sys-elevation-1);
+    flex-wrap: wrap; /* Para que los elementos se envuelvan en pantallas pequeñas */
+    gap: 16px; /* Espacio entre los elementos */
+}
+
+.pagination-controls__info {
+    font-family: var(--font-body); /* Body Medium M3 */
+    font-size: 14px;
+    color: var(--md-sys-color-on-surface-variant);
+}
+
+.pagination-controls__pages {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Espacio entre botones de paginación */
+}
+
+.pagination-controls__arrow,
+.pagination-controls__page-num {
+    background: none;
+    border: none;
+    cursor: pointer;
+    min-width: 40px; /* Touch target size */
+    min-height: 40px;
+    border-radius: var(--md-sys-shape-corner-full); /* Circular */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-label); /* Label Large M3 */
+    font-size: 14px;
+    color: var(--md-sys-color-on-surface-variant);
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.pagination-controls__arrow:hover,
+.pagination-controls__page-num:hover {
+    background-color: var(--md-sys-color-surface-container-high);
+}
+
+.pagination-controls__page-num--active {
+    background-color: var(--md-sys-color-secondary-container); /* Color de acento para la página activa */
+    color: var(--md-sys-color-on-secondary-container);
+    font-weight: 500;
+}
+
+.pagination-controls__page-num--active:hover {
+    background-color: var(--md-sys-color-secondary-container); /* No cambiar al pasar el mouse si ya está activo */
+}
+
+.pagination-controls__ellipsis {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--md-sys-color-on-surface-variant);
+    padding: 0 4px;
+}

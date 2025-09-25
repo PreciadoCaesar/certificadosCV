@@ -1,0 +1,81 @@
+/* css/pages/page_template.css */
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    flex-wrap: wrap; /* Para pantallas pequeñas */
+    gap: 16px; /* Espacio entre elementos */
+    border-left: 5px solid var(--md-sys-color-primary);
+    padding-left: 15px;
+}
+
+.section-header__text {
+    flex-grow: 1; /* Para que ocupe el espacio disponible */
+}
+
+.section-header__title {
+    font-family: var(--font-headline); /* Headline Small M3 */
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--md-sys-color-on-surface);
+    margin-bottom: 8px;
+}
+
+.section-header__description {
+    font-family: var(--font-body); /* Body Medium M3 */
+    font-size: 14px;
+    color: var(--md-sys-color-on-surface-variant);
+}
+
+.controls-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 24px;
+    background-color: var(--md-sys-color-surface-container); /* Fondo para la barra de controles */
+    border-radius: var(--md-sys-shape-corner-large);
+    box-shadow: var(--md-sys-elevation-0); /* No mucha sombra si es parte de un contenedor más grande */
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    gap: 16px; /* Espacio entre acciones y filtros */
+}
+
+.controls-bar__actions {
+    display: flex;
+    gap: 8px; /* Espacio entre los botones de acción */
+    flex-wrap: wrap;
+}
+.controls-bar__actions-column{
+    display: flex;
+    flex-direction: column;
+}
+
+.controls-bar__filters {
+    display: flex;
+    gap: 16px; /* Espacio entre el input de búsqueda y el botón de filtro */
+    flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+    .section-header, .controls-bar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .controls-bar__actions, .controls-bar__filters {
+        width: 100%;
+        justify-content: flex-start;
+    }
+    .text-input-wrapper {
+        width: 100%;
+    }
+}.dataTables_info {
+    display: none;
+    height: 0px;
+}.dataTables_paginate {
+    display: none;
+    height: 0px;
+}table#usuario_data {
+    margin-bottom: 0px;
+}	

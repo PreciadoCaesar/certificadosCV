@@ -1,0 +1,126 @@
+/* css/components/_table.css */
+
+.data-table-section {
+    margin-top: 24px;
+    background-color: var(--md-sys-color-surface-container-low);
+    border-radius: var(--md-sys-shape-corner-large);
+    box-shadow: var(--md-sys-elevation-1);
+    overflow: hidden; /* Asegura que bordes redondeados y sombras se apliquen correctamente si el contenido es grande */
+}
+
+.table-container {
+    width: 100%;
+    overflow-x: auto; /* Permite desplazamiento horizontal en tablas anchas */
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse; /* Elimina el espacio entre las celdas de la tabla */
+    font-family: var(--font-body);
+    font-size: 14px; /* Considera usar una variable de tu sistema de diseño aquí, ej. var(--md-sys-typescale-body-medium-size) */
+    color: var(--md-sys-color-on-surface);
+    /* --- ¡IMPORTANTE! Para controlar el ancho de las columnas --- */
+    table-layout: fixed; /* Hace que el ancho de las columnas se base en el contenedor, no en el contenido */
+}
+
+.data-table th:nth-child(1), .data-table td:nth-child(1) { width: 60px; min-width: 60px; } /* Foto */
+.data-table th:nth-child(2), .data-table td:nth-child(2) { width: 120px; min-width: 120px; } /* Nombre */
+.data-table th:nth-child(3), .data-table td:nth-child(3) { width: 150px; min-width: 150px; } /* Ap. Paterno */
+.data-table th:nth-child(4), .data-table td:nth-child(4) { width: 150px; min-width: 150px; } /* Ap. Materno */
+.data-table th:nth-child(5), .data-table td:nth-child(5) { width: 200px; min-width: 200px; } /* Correo */
+.data-table th:nth-child(6), .data-table td:nth-child(6) { width: 120px; min-width: 120px; } /* Teléfono */
+.data-table th:nth-child(7), .data-table td:nth-child(7) { width: 80px; min-width: 80px; } /* Rol */
+.data-table th:nth-child(8), .data-table td:nth-child(8) { width: 100px; min-width: 100px; } /* Opciones */
+
+.data-table__header {
+    background-color: var(--md-sys-color-surface-container);
+    border-bottom: 1px solid var(--md-sys-color-outline-variant);
+}
+
+.data-table__header tr{
+}
+
+.data-table__th {
+    padding: 12px 16px;
+    text-align: left;
+    
+    font-weight: 500; /* Considera usar una variable de tu sistema de diseño aquí, ej. var(--md-sys-typescale-body-medium-weight) */
+    color: var(--md-sys-color-on-surface-variant);
+    position: relative;
+    /* --- ¡IMPORTANTE! Para evitar desbordamiento en TH si el texto es muy largo --- */
+    overflow: hidden; /* Oculta el contenido que desborda */
+    text-overflow: ellipsis; /* Añade puntos suspensivos (...) si el contenido es cortado */
+    white-space: nowrap; /* Mantiene el texto en una sola línea */
+}
+
+
+.data-table__th--sortable {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.data-table__th-text {
+    flex-grow: 1; /* Permite que el texto ocupe el espacio disponible */
+    /* Estas propiedades ya están siendo manejadas por .data-table__th si se aplican a ambos */
+    /* overflow: hidden; */
+    /* text-overflow: ellipsis; */
+    /* white-space: nowrap; */
+}
+
+.data-table__th-sort-icon {
+    font-size: 20px;
+    margin-left: 8px;
+    color: var(--md-sys-color-outline);
+    transition: transform 0.2s ease-out;
+    flex-shrink: 0; /* Evita que el icono se encoja si el texto del encabezado es muy largo */
+}
+
+/* Estado para TH ordenado ascendentemente */
+.data-table__th--sortable.asc .data-table__th-sort-icon {
+    transform: rotate(180deg);
+}
+
+/* Filas de la tabla */
+.data-table__body tr {
+    border-bottom: 1px solid var(--md-sys-color-outline-variant);
+    transition: background-color 0.2s ease-out;
+}
+
+.data-table__body tr:last-child {
+    border-bottom: none;
+}
+
+.data-table__body tr:hover {
+    background-color: var(--md-sys-color-surface-container-high);
+}
+
+.data-table__cell {
+    padding: 12px 16px;
+    vertical-align: middle;
+    /* --- ¡IMPORTANTE! Para controlar el desbordamiento de contenido en las celdas --- */
+    word-wrap: break-word; /* Permite que palabras muy largas se rompan y pasen a la siguiente línea */
+    overflow-wrap: break-word; /* Alternativa moderna a word-wrap */
+    /* Opcional: Para truncar el texto en lugar de romperlo */
+    /* white-space: nowrap; */
+    /* overflow: hidden; */
+    /* text-overflow: ellipsis; */
+}
+
+.data-table__user-photo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Grupo de acciones (botones) en una celda */
+.action-group { /* Considera renombrar a .data-table__cell-actions para consistencia BEM */
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+}

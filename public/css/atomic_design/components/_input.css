@@ -1,0 +1,114 @@
+/* css/components/_input.css */
+
+.text-input-wrapper {
+  position: relative;
+  display: inline-flex; /* Para que el input y el icono estén en línea */
+  align-items: center;
+  background-color: var(--md-sys-color-surface-container-highest); /* Fondo para el input */
+  border-radius: var(--md-sys-shape-corner-full); /* Forma de píldora */
+  padding: var(--spacing-xs) var(--spacing-m); /* 8px 16px -> 0.5rem 1rem */
+  box-shadow: var(--md-sys-elevation-0);
+  transition: background-color var(--transition-duration-short) var(--transition-easing-standard),
+              box-shadow var(--transition-duration-short) var(--transition-easing-standard);
+  min-height: 4.8rem; /* Altura M3 para campos de texto: 48px -> 3rem */
+  /* Añadir un borde sutil para que el input no se "mezcle" con el fondo en algunos temas */
+  border: var(--border-width-thin) solid transparent; /* Borde invisible por defecto */
+}
+.select-input{
+  position: relative;
+  display: inline-flex; /* Para que el input y el icono estén en línea */
+  align-items: center;
+  background-color: var(--md-sys-color-on-primary); /* Fondo para el input */
+  border-radius: var(--md-sys-shape-corner-full); /* Forma de píldora */
+  padding: var(--spacing-xs) var(--spacing-m); /* 8px 16px -> 0.5rem 1rem */
+  box-shadow: var(--md-sys-elevation-0);
+  transition: background-color var(--transition-duration-short) var(--transition-easing-standard),
+              box-shadow var(--transition-duration-short) var(--transition-easing-standard);
+  min-height: 4.8rem; /* Altura M3 para campos de texto: 48px -> 3rem */
+  /* Añadir un borde sutil para que el input no se "mezcle" con el fondo en algunos temas */
+  border: var(--md-sys-color-outline) solid 1px; /* Borde invisible por defecto */
+  min-width: 250px; /* Asegura que ocupe todo el ancho disponible */
+
+}
+
+.text-input-wrapper:focus-within {
+  background-color: var(--md-sys-color-surface-container-high);
+  box-shadow: var(--md-sys-elevation-1); /* Sombra al enfocar */
+  border-color: var(--md-sys-color-primary); /* Resaltar borde al enfocar */
+}
+
+.text-input-wrapper__icon {
+  font-size: 2.4rem; /* 24px -> 1.5rem */
+  color: var(--md-sys-color-on-surface-variant);
+  margin-right: var(--spacing-xs); /* 8px -> 0.5rem */
+  /* Asegurar que el icono no sea seleccionable */
+  user-select: none;
+  flex-shrink: 0; /* Evita que el icono se encoja */
+}
+
+.text-input {
+  border: none;
+  background-color: transparent;
+  font-family: var(--font-family-body); /* Body Large M3 */
+  font-size: var(--font-size-body-large); /* 16px -> 1rem */
+  color: var(--md-sys-color-on-surface);
+  padding: 0; /* Reinicia el padding del input (importante para evitar dobles paddings) */
+  flex-grow: 1; /* Ocupa el espacio restante */
+  outline: none; /* Eliminar el outline por defecto del navegador */
+  line-height: var(--line-height-normal); /* Asegurar un line-height consistente */
+
+  /* Importante para la accesibilidad del focus-visible */
+  /* El outline se aplicará al wrapper, no al input directamente.
+     Esto evita que el outline de Material Design "corte" la forma de píldora. */
+  /* Si necesitas que el focus sea visible solo en el input, puedes dejar outline: 2px solid... aquí
+     y quitar outline: none, pero el enfoque del wrapper es más común para campos con iconos. */
+}
+
+.text-input::placeholder {
+  color: var(--md-sys-color-outline); /* Color del placeholder */
+  opacity: 1; /* Asegura que el placeholder no tenga una opacidad predeterminada */
+}
+
+/* ==================================================================== */
+/* Variantes adicionales (ej. para campos con errores)                */
+/* ==================================================================== */
+
+.text-input-wrapper--error {
+  border-color: var(--md-sys-color-error); /* Borde rojo para error */
+  box-shadow: var(--md-sys-elevation-0); /* Sin sombra de elevación extra */
+}
+
+.text-input-wrapper--error .text-input-wrapper__icon {
+  color: var(--md-sys-color-error); /* Icono de error */
+}
+
+.text-input-wrapper--error:focus-within {
+  border-color: var(--md-sys-color-error); /* Mantener el borde rojo al enfocar un campo con error */
+  box-shadow: var(--md-sys-elevation-1);
+}
+
+/* Texto de ayuda/error asociado al input */
+.text-input-helper-text {
+  font-family: var(--font-family-label);
+  font-size: var(--font-size-label-small); /* 11px -> 0.688rem */
+  color: var(--md-sys-color-on-surface-variant);
+  margin-top: var(--spacing-xxs); /* 4px -> 0.25rem */
+  margin-left: var(--spacing-m); /* Para alinear con el padding del input */
+}
+
+.text-input-helper-text--error {
+  color: var(--md-sys-color-error);
+}
+
+
+
+/*
+Puedes eliminarlo lo puse porque no queria modificar 
+el modal xd de hay solo agregas las clases ya hecha y queda
+
+Sin paga - pereza ingresada
+*/
+
+.form-xd{
+  padding: var(--spacing-m);
+}

@@ -1,0 +1,703 @@
+/* css/pages/_users.css */
+
+/* --- Page Wrapper --- */
+/* para centrar y dar un ancho máximo */
+
+.page-wrapper {
+    grid-area: content; /* necesario si usas grid-template-areas */
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* ✅ Esto es clave para que el scroll funcione */
+    width: 100%;
+    background-color: var(--md-sys-color-surface);
+    overflow-y: auto;
+}
+
+/* --- Header Principal --- */
+.main-header {
+    background-color: var(--md-sys-color-primary-container);
+    /* Color de fondo para el header */
+    color: var(--md-sys-color-on-primary-container);
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    gap: 15px;
+    /* Espacio entre ícono y título */
+    border-bottom: 1px solid var(--md-sys-color-outline);
+    /* Separador sutil */
+}
+
+.main-header__icon {
+    font-size: 32px;
+    width: 48px;
+    /* Tamaño fijo para el ícono */
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.1);
+    /* Fondo sutil para el icono */
+    border-radius: var(--md-sys-shape-corner-full);
+    /* Circular */
+}
+
+.main-header__title {
+    font-family: var(--font-headline);
+    font-size: 28px;
+    /* Headline Medium M3 */
+    font-weight: 400;
+    line-height: 36px;
+    letter-spacing: 0px;
+}
+
+/* --- Main Content --- */
+/* para padding general de secciones */
+.main-content {
+    padding: 20px 24px;
+    /* Padding horizontal consistente */
+}
+
+/* --- Sección de Título/Descripción (Usuarios) --- */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    /* Espacio debajo del header */
+    flex-wrap: wrap;
+    /* Para pantallas pequeñas */
+    gap: 16px;
+    /* Espacio entre elementos */
+    border-left: 5px solid var(--md-sys-color-primary);
+    /* Barra lateral azul */
+    padding-left: 15px;
+    /* Espacio entre la barra y el texto */
+}
+
+.section-header__text {
+    flex-grow: 1;
+    /* Para que ocupe el espacio disponible */
+}
+
+.section-header__title {
+    font-family: var(--font-headline);
+    /* Headline Small M3 */
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--md-sys-color-on-surface);
+    margin-bottom: 8px;
+    line-height: 32px;
+}
+
+.section-header__description {
+    font-family: var(--font-body);
+    /* Body Medium M3 */
+    font-size: 14px;
+    color: var(--md-sys-color-on-surface-variant);
+    line-height: 20px;
+}
+
+/* --- Botones genéricos (BEM: .button) --- */
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2rem;
+    /* Usando rems y valores de Material Design */
+    border: none;
+    border-radius: var(--md-sys-shape-corner-small);
+    /* Ajustado a 'small' para M3 */
+    cursor: pointer;
+    font-family: var(--font-family-label);
+    /* Usando variables para tipografía M3 */
+    font-size: var(--font-size-label-large);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-tight);
+    letter-spacing: 0.001rem;
+    text-transform: none;
+    /* M3 no usa uppercase por defecto */
+    transition: background-color var(--transition-duration-short) var(--transition-easing-standard),
+        box-shadow var(--transition-duration-short) var(--transition-easing-standard),
+        color var(--transition-duration-short) var(--transition-easing-standard);
+    min-height: 4rem;
+    /* Altura mínima de botón de M3: 40px */
+    position: relative;
+    /* Para el efecto ripple */
+    overflow: hidden;
+    /* Para el efecto ripple */
+}
+
+.button:focus-visible {
+    outline: 2px solid var(--md-sys-color-primary);
+    /* Contorno de enfoque claro */
+    outline-offset: 2px;
+    border-radius: var(--md-sys-shape-corner-small);
+    /* Para que el outline respete los bordes */
+}
+
+.button .material-symbols-outlined {
+    font-size: 2rem;
+    /* Tamaño del icono dentro del botón (20px) */
+    margin-right: var(--spacing-xs);
+    /* Espacio entre icono y texto (8px) */
+    color: inherit;
+    /* Asegura que el color del icono herede del botón */
+}
+
+.button--icon-trailing .material-symbols-outlined {
+    margin-right: 0;
+    margin-left: var(--spacing-xs);
+}
+
+/* Modificadores de botón */
+.button--primary {
+    background-color: var(--md-sys-color-primary);
+    color: var(--md-sys-color-on-primary);
+    box-shadow: var(--md-sys-elevation-1);
+}
+
+.button--primary:hover {
+    background-color: var(--md-sys-color-primary-fixed-dim);
+    /* Tono ligeramente más oscuro para hover */
+    box-shadow: var(--md-sys-elevation-2);
+    /* Aumenta la sombra */
+}
+
+.button--primary:active {
+    background-color: var(--md-sys-color-primary-fixed-dim);
+    /* Mismo tono para active */
+    box-shadow: var(--md-sys-elevation-1);
+    /* Vuelve a la sombra original o menos */
+}
+
+.button--primary:disabled {
+    background-color: var(--md-sys-color-on-surface);
+    /* Color sobre superficie para disabled */
+    color: var(--md-sys-color-surface);
+    /* Color de superficie para texto disabled */
+    opacity: 0.12;
+    /* Opacidad según M3 */
+    box-shadow: none;
+    cursor: not-allowed;
+}
+
+.button--outlined {
+    background-color: transparent;
+    color: var(--md-sys-color-primary);
+    border: var(--border-width-thin) var(--border-style-solid) var(--md-sys-color-outline);
+    /* Borde según M3 con variables */
+    box-shadow: var(--md-sys-elevation-0);
+}
+
+.button--outlined:hover {
+    background-color: var(--md-sys-color-primary-container);
+    /* Un toque de color al pasar el mouse */
+    border-color: var(--md-sys-color-primary);
+}
+
+.button--outlined:active {
+    background-color: var(--md-sys-color-primary-container);
+    border-color: var(--md-sys-color-primary);
+}
+
+.button--outlined:disabled {
+    color: var(--md-sys-color-on-surface);
+    /* Color de texto disabled */
+    opacity: 0.38;
+    /* Opacidad para texto disabled */
+    border-color: var(--md-sys-color-on-surface);
+    /* Color del borde disabled */
+    opacity: 1;
+    /* La opacidad general del botón maneja la apariencia */
+    cursor: not-allowed;
+}
+
+/* Text button */
+.button--text {
+    background-color: transparent;
+    color: var(--md-sys-color-primary);
+    box-shadow: var(--md-sys-elevation-0);
+    padding: 1rem 1.2rem;
+    /* Menos padding para botones de texto */
+}
+
+.button--text:hover {
+    background-color: var(--md-sys-color-primary-container);
+}
+
+.button--text:active {
+    background-color: var(--md-sys-color-primary-container);
+}
+
+.button--text:disabled {
+    color: var(--md-sys-color-on-surface);
+    opacity: 0.38;
+    cursor: not-allowed;
+}
+
+/* --- Controles Bar (acciones y filtros) --- */
+.controls-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 24px;
+    background-color: var(--md-sys-color-surface-container);
+    /* Fondo para la barra de controles */
+    border-radius: var(--md-sys-shape-corner-large);
+    box-shadow: var(--md-sys-elevation-0);
+    /* No mucha sombra si es parte de un contenedor más grande */
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    /* Para que se ajuste en pantallas pequeñas */
+    gap: 16px;
+    /* Espacio entre acciones y filtros */
+}
+
+.controls-bar__actions {
+    display: flex;
+    gap: 8px;
+    /* Espacio entre los botones de acción/inputs */
+    flex-wrap: wrap;
+}
+
+.controls-bar__actions-column {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.controls-bar__filters {
+    display: flex;
+    gap: 16px;
+    /* Espacio entre el input de búsqueda y el botón de filtro */
+    flex-wrap: wrap;
+}
+
+.controls-bar__filters-end {
+    gap: 16px;
+    /* Espacio entre el input de búsqueda y el botón de filtro */
+    flex-wrap: wrap;
+    justify-content: end;
+    width: 100%;
+}
+
+.controls-bar-button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--md-sys-color-surface-container);
+    /* Fondo para la barra de controles */
+    border-radius: var(--md-sys-shape-corner-large);
+    box-shadow: var(--md-sys-elevation-0);
+    /* No mucha sombra si es parte de un contenedor más grande */
+    flex-wrap: wrap;
+    /* Para que se ajuste en pantallas pequeñas */
+    gap: 16px;
+    /* Espacio entre acciones y filtros */
+    width: 100%;
+}
+
+/* --- Input de Texto --- */
+.text-input-wrapper {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid var(--md-sys-color-outline);
+    border-radius: var(--md-sys-shape-corner-medium);
+    padding: 8px 16px;
+    /* Espacio interno para el input y el icono */
+    background-color: var(--md-sys-color-surface);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    min-width: 250px;
+    /* Ancho mínimo para el buscador */
+}
+
+.text-input-wrapper:focus-within {
+    border-color: var(--md-sys-color-primary);
+    box-shadow: 0 0 0 1px var(--md-sys-color-primary);
+    /* Anillo de foco */
+}
+
+.text-input-wrapper__icon {
+    color: var(--md-sys-color-on-surface-variant);
+    font-size: 20px;
+    margin-right: 8px;
+}
+
+.text-input {
+    flex-grow: 1;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-family: var(--font-body);
+    font-size: 16px;
+    color: var(--md-sys-color-on-surface);
+    padding: 0;
+    /* Elimina padding por defecto del input */
+}
+
+.text-input::placeholder {
+    color: var(--md-sys-color-on-surface-variant);
+    opacity: 0.7;
+}
+
+/* --- Tabla de Datos --- */
+.dataTables_info {
+    display: none;
+    height: 0px;
+}
+
+.dataTables_paginate {
+    display: none;
+    height: 0px;
+}
+
+table#usuario_data {
+    margin-bottom: 0px;
+}
+
+.data-table-section {
+    width: 100% !important;
+    overflow-x: auto;
+    /* Para tablas que pueden exceder el ancho de la pantalla */
+    margin-bottom: 24px;
+    border: 1px solid var(--md-sys-color-outline);
+    /* Borde general de la tabla */
+    border-radius: var(--md-sys-shape-corner-medium);
+    overflow: hidden;
+    /* Para que los bordes redondeados se apliquen bien */
+}
+
+.data-table {
+    width: 100% !important;
+    border-collapse: collapse;
+    /* Elimina el espacio entre celdas */
+}
+
+.data-table__header {
+    background-color: var(--md-sys-color-primary-container);
+    /* Fondo para el encabezado */
+    color: var(--md-sys-color-on-primary-container);
+    text-align: left;
+}
+
+.data-table__th {
+    padding: 12px 16px;
+    font-family: var(--font-label);
+    font-size: 12px;
+    /* Más pequeño para los encabezados */
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    position: relative;
+    /* Para el icono de ordenación */
+}
+
+.data-table__th--sortable {
+    cursor: pointer;
+}
+
+.data-table__th-text {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.data-table__th-sort-icon {
+    font-size: 16px;
+    /* Tamaño del icono de ordenación */
+    vertical-align: middle;
+    margin-left: 4px;
+    color: rgba(var(--md-sys-color-on-primary-container), 0.7);
+    /* Menos opaco */
+}
+
+.data-table__body tr {
+    border-bottom: 1px solid var(--md-sys-color-surface-variant);
+    /* Separador de filas */
+}
+
+.data-table__body tr:last-child {
+    border-bottom: none;
+    /* No hay borde en la última fila */
+}
+
+.data-table__body td {
+    /* Esta regla estaba vacía en tu CSS original, la mantengo así */
+}
+
+.data-table__body tr:hover {
+    background-color: rgba(var(--md-sys-color-primary), 0.04);
+    /* Resaltar fila al pasar el mouse */
+}
+
+.data-table__cell {
+    padding: 12px 16px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--md-sys-color-on-surface);
+    vertical-align: middle;
+}
+
+.data-table__cell--avatar {
+    width: 50px;
+    /* Ancho fijo para la columna de avatar */
+}
+
+.user-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--md-sys-shape-corner-full);
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+    /* Centrar la imagen */
+    border: 1px solid var(--md-sys-color-outline);
+    /* Borde sutil al avatar */
+}
+
+.data-table__cell--actions {
+    display: flex;
+    gap: 4px;
+    justify-content: flex-end;
+    /* Alinea los botones de acción a la derecha */
+}
+
+/* Icon Button (para íconos solos que actúan como botones) */
+.icon-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--spacing-xs);
+    /* Tamaño de área de toque */
+    border-radius: var(--md-sys-shape-corner-full);
+    /* Circular */
+    color: var(--md-sys-color-on-surface-variant);
+    /* Color estándar para íconos */
+    transition: background-color var(--transition-duration-short) var(--transition-easing-standard),
+        color var(--transition-duration-short) var(--transition-easing-standard);
+    display: inline-flex;
+    /* Para centrar el icono */
+    align-items: center;
+    justify-content: center;
+    min-width: 4rem;
+    /* Tamaño de touch target: 40px */
+    min-height: 4rem;
+    /* Tamaño de touch target: 40px */
+}
+
+.icon-button:focus-visible {
+    outline: 2px solid var(--md-sys-color-primary);
+    outline-offset: 2px;
+    border-radius: var(--md-sys-shape-corner-full);
+    /* Para que el outline respete los bordes circulares */
+}
+
+.icon-button:hover {
+    background-color: var(--md-sys-color-surface-container-highest);
+    /* Un gris sutil al pasar el mouse */
+}
+
+.icon-button:active {
+    background-color: var(--md-sys-color-surface-container-high);
+}
+
+.icon-button:disabled {
+    color: var(--md-sys-color-on-surface);
+    opacity: 0.38;
+    cursor: not-allowed;
+}
+
+.icon-button .material-symbols-outlined {
+    font-size: 2.4rem;
+    /* Tamaño del icono dentro del botón de icono (24px) */
+    margin: 0;
+    /* No hay margen interno */
+    color: inherit;
+    /* Hereda el color del botón de icono */
+}
+
+/* Colores de íconos de acción específicos (editar, eliminar, ver) */
+.icon-button--edit {
+    color: var(--md-extended-color-warning-color);
+}
+
+.icon-button--delete {
+    color: var(--md-extended-color-danger-color);
+}
+
+.icon-button--view {
+    color: var(--md-extended-color-confirm-color);
+}
+
+/* Ripple effect (para todos los botones con la clase 'ripple-effect' si se usa JS) */
+.button .ripple,
+.icon-button .ripple {
+    position: absolute;
+    border-radius: var(--md-sys-shape-corner-full);
+    transform: scale(0);
+    opacity: 0.5;
+    background-color: currentColor;
+    /* Usa el color actual del texto/icono para el ripple */
+    animation: ripple-animation var(--transition-duration-medium) linear;
+}
+
+@keyframes ripple-animation {
+    to {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+/* Ocultar botones de DataTables */
+.dt-buttons {
+    display: none;
+}
+
+.dataTables_filter {
+    display: none;
+}
+
+/* Bloque: Grupo de Botones de Acción */
+.action-buttons {
+    display: flex;
+    gap: var(--spacing-xs);
+    /* Pequeño espacio entre los botones (ej. 8px) */
+}
+
+
+/* --- Paginación --- */
+.pagination-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 0 24px;
+    /* Padding similar al main-content */
+}
+
+.pagination-controls__info {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--md-sys-color-on-surface-variant);
+}
+
+.pagination-controls__pages {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.pagination-controls__arrow,
+.pagination-controls__page-num {
+    background-color: transparent;
+    border: none;
+    border-radius: var(--md-sys-shape-corner-small);
+    /* Bordes suaves */
+    color: var(--md-sys-color-on-surface);
+    font-family: var(--font-label);
+    font-size: 14px;
+    font-weight: 500;
+    min-width: 40px;
+    /* Ancho mínimo para clic */
+    height: 40px;
+    /* Altura mínima para clic */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.pagination-controls__arrow:hover,
+.pagination-controls__page-num:hover {
+    background-color: var(--md-sys-color-surface-variant);
+}
+
+.pagination-controls__page-num--active {
+    background-color: var(--md-sys-color-primary);
+    color: var(--md-sys-color-on-primary);
+}
+
+.pagination-controls__page-num--active:hover {
+    background-color: var(--md-sys-color-primary);
+    color: var(--md-sys-color-on-primary);
+}
+
+.pagination-controls__ellipsis {
+    color: var(--md-sys-color-on-surface-variant);
+    font-size: 14px;
+    padding: 0 4px;
+}
+
+.select-wrapper {
+    /* Cambiado a block para que ocupe su propia línea */
+    /* Ocupa todo el ancho disponible */
+    /* Espacio debajo del select */
+}
+
+.select-input {
+    width: 100%;
+    padding: 10px 16px;
+    border: 1px solid var(--md-sys-color-outline);
+    border-radius: var(--md-sys-shape-corner-medium);
+    background-color: var(--md-sys-color-surface);
+    color: var(--md-sys-color-on-surface);
+    font-family: var(--font-body);
+    font-size: 16px;
+    appearance: none;
+    /* Elimina el estilo predeterminado del navegador */
+    background-image: url('data:image/svg+xml;charset=UTF-8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%2349454F"%3E%3Cpath d="M7 10l5 5 5-5z"/%3E%3C/svg%3E');
+    /* Icono de flecha */
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 24px;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.select-input:focus {
+    border-color: var(--md-sys-color-primary);
+    box-shadow: 0 0 0 1px var(--md-sys-color-primary);
+}
+
+
+/* --- Media Queries para responsividad --- */
+@media (max-width: 768px) {
+
+    .section-header,
+    .controls-bar {
+        /* Combinado de ambas definiciones */
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .main-header {
+        /* Añadido de la segunda media query */
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .controls-bar__actions,
+    .controls-bar__filters {
+        width: 100%;
+        justify-content: stretch;
+        /* Estirar botones */
+    }
+
+    .controls-bar__actions .button,
+    .controls-bar__filters .button,
+    .text-input-wrapper {
+        flex-grow: 1;
+        /* Los elementos ocupan el ancho completo */
+        width: 100%;
+    }
+
+    .pagination-controls {
+        /* Añadido de la segunda media query */
+        flex-direction: column;
+        align-items: center;
+    }
+}

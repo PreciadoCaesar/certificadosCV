@@ -1,0 +1,211 @@
+/* css/components/_button.css */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  /* Espaciado interno: 10px 20px -> 0.625rem 1.25rem */
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: var(--md-sys-shape-corner-small); /* Ajusta según tus preferencias M3 (4px -> 0.25rem) */
+  cursor: pointer;
+  font-family: var(--font-family-label); /* Label Large M3 */
+  font-size: var(--font-size-label-large); /* 14px -> 0.875rem */
+  font-weight: var(--font-weight-medium); /* 500 */
+  line-height: var(--line-height-tight); /* 20px (14px * 1.428) -> Usar line-height de tipografía */
+  letter-spacing: 0.001rem; /* 0.1px -> 0.00625rem */
+  text-transform: none; /* M3 suele no usar uppercase por defecto */
+  /* Transiciones con variables */
+  transition: background-color var(--transition-duration-short) var(--transition-easing-standard),
+              box-shadow var(--transition-duration-short) var(--transition-easing-standard),
+              color var(--transition-duration-short) var(--transition-easing-standard);
+  min-height: 4rem; /* Altura mínima de botón de M3: 40px -> 2.5rem */
+  position: relative; /* Para el efecto ripple */
+  overflow: hidden; /* Para el efecto ripple */
+  /* Asegurar focus-visible para accesibilidad */
+  &:focus-visible {
+    outline: 2px solid var(--md-sys-color-primary); /* Contorno de enfoque claro */
+    outline-offset: 2px;
+    border-radius: var(--md-sys-shape-corner-small); /* Para que el outline respete los bordes */
+  }
+}
+
+.button .material-symbols-outlined {
+  font-size: 2rem; /* 20px -> 1.25rem. Tamaño del icono dentro del botón */
+  margin-right: var(--spacing-xs); /* 8px -> 0.5rem. Espacio entre icono y texto */
+  /* Asegura que el color del icono herede del botón */
+  color: inherit;
+}
+
+.button--icon-trailing .material-symbols-outlined {
+  margin-right: 0;
+  margin-left: var(--spacing-xs); /* 8px -> 0.5rem */
+}
+
+/* ==================================================================== */
+/* Variantes de botones                                               */
+/* ==================================================================== */
+
+/* Filled button (Primary) */
+.button--primary {
+  background-color: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-primary);
+  box-shadow: var(--md-sys-elevation-1);
+}
+.button--primary:hover {
+  background-color: var(--md-sys-color-primary-fixed-dim); /* Un tono ligeramente más oscuro para hover */
+  box-shadow: var(--md-sys-elevation-2);
+}
+.button--primary:active {
+  background-color: var(--md-sys-color-primary-fixed-dim); /* El mismo tono para active */
+  box-shadow: var(--md-sys-elevation-1); /* Vuelve a elevation 1 */
+}
+.button--primary:disabled {
+  background-color: var(--md-sys-color-on-surface); /* Color sobre superficie para disabled */
+  color: var(--md-sys-color-surface); /* Color de superficie para texto disabled */
+  opacity: 0.12; /* Opacidad según M3 */
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+/* Outlined button */
+.button--outlined {
+  background-color: transparent;
+  color: var(--md-sys-color-primary);
+  border: var(--border-width-thin) var(--border-style-solid) var(--md-sys-color-outline); /* 1px solid -> variables */
+  box-shadow: var(--md-sys-elevation-0);
+}
+.button--outlined:hover {
+  background-color: var(--md-sys-color-primary-container); /* Un toque de color al pasar el mouse */
+  border-color: var(--md-sys-color-primary);
+}
+.button--outlined:active {
+  background-color: var(--md-sys-color-primary-container);
+  border-color: var(--md-sys-color-primary);
+}
+.button--outlined:disabled {
+  color: var(--md-sys-color-on-surface); /* Color de texto disabled */
+  opacity: 0.38; /* Opacidad para texto disabled */
+  border-color: var(--md-sys-color-on-surface); /* Color del borde disabled */
+  /* La opacidad del borde también debería ser 0.12 si quieres seguir M3 estrictamente para el borde */
+  /* border-color: rgba(var(--md-sys-color-on-surface-rgb), 0.12); // Si tienes RGB vars */
+  opacity: 1; /* La opacidad general del botón maneja la apariencia */
+  cursor: not-allowed;
+}
+
+/* Text button */
+.button--text {
+  background-color: transparent;
+  color: var(--md-sys-color-primary);
+  box-shadow: var(--md-sys-elevation-0);
+  padding: 1rem 1.2rem; /* 10px 12px -> 0.625rem 0.75rem. Menos padding para botones de texto */
+}
+.button--text:hover {
+  background-color: var(--md-sys-color-primary-container);
+}
+.button--text:active {
+  background-color: var(--md-sys-color-primary-container);
+}
+.button--text:disabled {
+  color: var(--md-sys-color-on-surface);
+  opacity: 0.38;
+  cursor: not-allowed;
+}
+
+/* ==================================================================== */
+/* Icon Button (para íconos solos que actúan como botones)            */
+/* ==================================================================== */
+.icon-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--spacing-xs); /* 8px -> 0.5rem. Tamaño de área de toque */
+  border-radius: var(--md-sys-shape-corner-full); /* Circular */
+  color: var(--md-sys-color-on-surface-variant); /* Color estándar para íconos */
+  transition: background-color var(--transition-duration-short) var(--transition-easing-standard),
+              color var(--transition-duration-short) var(--transition-easing-standard);
+  display: inline-flex; /* Para centrar el icono */
+  align-items: center;
+  justify-content: center;
+  min-width: 4rem; /* Tamaño de touch target: 40px -> 2.5rem */
+  min-height: 4rem; /* Tamaño de touch target: 40px -> 2.5rem */
+  /* Asegurar focus-visible para accesibilidad */
+  &:focus-visible {
+    outline: 2px solid var(--md-sys-color-primary);
+    outline-offset: 2px;
+    border-radius: var(--md-sys-shape-corner-full); /* Para que el outline respete los bordes circulares */
+  }
+}
+.icon-button:hover {
+  background-color: var(--md-sys-color-surface-container-highest); /* Un gris sutil al pasar el mouse */
+}
+.icon-button:active {
+  background-color: var(--md-sys-color-surface-container-high);
+}
+.icon-button:disabled {
+  color: var(--md-sys-color-on-surface);
+  opacity: 0.38;
+  cursor: not-allowed;
+}
+
+.icon-button .material-symbols-outlined {
+  font-size: 2.4rem; /* 24px -> 1.5rem. Tamaño del icono dentro del botón de icono */
+  margin: 0; /* No hay margen interno */
+  color: inherit; /* Hereda el color del botón de icono */
+}
+
+/* Colores de íconos de acción específicos (editar, eliminar, ver) */
+/* Sugerencia: Usar tus colores extendidos para una mejor coherencia */
+.icon-button--edit {
+  color: var(--md-extended-color-warning-color); /* Usar variable de color extendido de warning */
+  /* O define --md-sys-color-custom-orange-action en tu :root */
+}
+.icon-button--delete {
+  color: var(--md-extended-color-danger-color); /* Usar variable de color extendido de danger */
+  /* O define --md-sys-color-custom-red-danger en tu :root */
+}
+.icon-button--view {
+  color: var(--md-extended-color-confirm-color); /* Usar variable de color extendido de confirm */
+  /* O define --md-sys-color-custom-green-view en tu :root */
+}
+
+/* ==================================================================== */
+/* Ripple effect (para todos los botones con la clase 'ripple-effect' si se usa JS) */
+/* ==================================================================== */
+.button .ripple, .icon-button .ripple {
+  position: absolute;
+  border-radius: var(--md-sys-shape-corner-full); /* 50% -> full para consistencia */
+  transform: scale(0);
+  opacity: 0.5;
+  background-color: currentColor; /* Usa el color actual del texto/icono para el ripple */
+  animation: ripple-animation var(--transition-duration-medium) linear; /* Usar variable de duración */
+}
+
+@keyframes ripple-animation {
+  to {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+/* ==================================================================== */
+/* no hacer visible los botones: nose como eliminarlos asi que los ocultare */
+/* ==================================================================== */
+
+.dt-buttons{
+  display: none;
+}
+.dataTables_filter{
+  display: none;
+}
+
+
+
+/* ==================================================================== */
+/* Bloque: Grupo de Botones de Acción                                 */
+/* ==================================================================== */
+.action-buttons {
+    display: flex; /* Para que los botones se alineen horizontalmente */
+    gap: var(--spacing-xs); /* Pequeño espacio entre los botones (ej. 8px) */
+    /* Puedes añadir aquí más estilos si quieres que este grupo de botones se centre, etc. */
+}
