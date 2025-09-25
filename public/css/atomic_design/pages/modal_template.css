@@ -1,0 +1,389 @@
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .modal-dialog {
+    max-width: 95%;
+    margin: auto;
+  }
+
+  .modal-body {
+    padding: 15px;
+    margin: 0px !important;
+  }
+
+  .form-layout {
+    margin: 0;
+    padding: 15px;
+  }
+
+  .nav-tabs .nav-link {
+    font-size: 14px;
+    padding: 8px;
+  }
+}
+
+.mb-3 {
+  margin-bottom: 0px !important;
+}
+
+/* Estilos generales */
+.modal-content {
+  border-radius: 15px;
+  border: 2px solid var(--md-sys-color-outline); /* Usando color de outline */
+  background-color: var(--md-sys-color-surface-container-low); /* Un color de superficie más claro para modales */
+}
+
+.modal-header { /* Specific for modal_visualizar_foto */
+  background-color: var(--md-sys-color-primary-container); /* Color de contenedor primario */
+  color: var(--md-sys-color-on-primary-container); /* Color de texto sobre contenedor primario */
+  border-radius: 15px 15px 0 0;
+}
+
+.header-section { /* Specific for modal_usuario */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--md-sys-color-primary-container); /* Color de contenedor primario */
+  color: var(--md-sys-color-on-primary-container); /* Color de texto sobre contenedor primario */
+  padding: 15px;
+  border-radius: 15px 15px 0 0;
+}
+
+/* Modificado para usar icon-button */
+.close-btn { 
+  display: none; /* Oculta la clase close-btn original si no se usa */
+}
+
+.nav-tabs .nav-link {
+  font-weight: var(--md-sys-typescale-font-weight-medium); /* Peso de fuente medio */
+  border-radius: 10px 10px 0 0;
+  background: var(--md-sys-color-primary-container); /* Color de contenedor primario */
+  color: var(--md-sys-color-on-primary-container) !important; /* Color de texto sobre contenedor primario */
+}
+
+.nav-tabs .nav-link.active {
+  background-color: var(--md-sys-color-surface-container-highest); /* Color de superficie más alto */
+  color: var(--md-sys-color-primary) !important; /* Color primario para el texto activo */
+}
+
+/* Clases de tipografía Material Design 3 */
+.md-headline-small {
+  font-family: var(--md-sys-typescale-font-family);
+  font-size: var(--md-sys-typescale-headline-small-font-size);
+  font-weight: var(--md-sys-typescale-font-weight-regular);
+  color: var(--md-sys-color-on-primary-container);
+}
+
+.md-label-large {
+  font-family: var(--md-sys-typescale-font-family);
+  font-size: var(--md-sys-typescale-label-large-font-size);
+  font-weight: var(--md-sys-typescale-font-weight-medium); /* Labels typically use medium weight */
+  color: var(--md-sys-color-on-surface);
+}
+
+.md-body-large { /* Para texto de entrada/select */
+  font-family: var(--md-sys-typescale-font-family);
+  font-size: var(--md-sys-typescale-body-large-font-size);
+  font-weight: var(--md-sys-typescale-font-weight-regular);
+  color: var(--md-sys-color-on-surface);
+}
+
+/* Controles de Formulario - Aplicar estilos comunes */
+.form-control,
+.form-select {
+  border-radius: 50px;
+  padding: 10px 15px;
+  border: 1px solid var(--md-sys-color-outline);
+  background-color: var(--md-sys-color-surface-container); /* Típicamente un color de superficie */
+  color: var(--md-sys-color-on-surface);
+  font-family: var(--md-sys-typescale-font-family);
+  font-size: var(--md-sys-typescale-body-large-font-size); /* Usar body-large para texto de entrada */
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--md-sys-color-primary);
+  box-shadow: 0 0 0 0.25rem rgba(var(--md-sys-color-primary-rgb), 0.25); /* Anillo de enfoque de Bootstrap con color primario de MD3 */
+  outline: none;
+}
+
+/* Estilo específico para el ícono de flecha del select */
+.form-select {
+  /* Quitar la flecha por defecto del navegador */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  /* Ícono de flecha personalizado usando Material Symbols (SVG codificado en base64) */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px' fill='%2349454F'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3Cpath d='M0 0h24v24H0V0z' fill='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1.5rem; /* Tamaño del ícono */
+  padding-right: 3rem; /* Dejar espacio para la flecha personalizada */
+}
+
+/* Estilos para los elementos generados por Select2 */
+.select2-container--default .select2-selection--single {
+    border-radius: 50px;
+    padding: 10px 15px;
+    border: 1px solid var(--md-sys-color-outline);
+    background-color: var(--md-sys-color-surface-container);
+    color: var(--md-sys-color-on-surface);
+    height: auto !important; /* Asegura que la altura se ajuste con el padding */
+    min-height: 44px; /* Altura típica de entrada de Bootstrap */
+    box-sizing: border-box; /* Incluye padding y border en el tamaño total */
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    color: var(--md-sys-color-on-surface);
+    line-height: normal; /* Asegura que el texto se alinee correctamente */
+    padding: 0; /* Elimina el padding por defecto de select2 */
+    font-family: var(--md-sys-typescale-font-family);
+    font-size: var(--md-sys-typescale-body-large-font-size);
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 100%; /* El contenedor de la flecha ocupa toda la altura */
+    position: absolute;
+    top: 0;
+    right: 1rem; /* Alinea con la posición de la flecha personalizada */
+    width: 24px;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow b {
+    border-color: var(--md-sys-color-on-surface-variant) transparent transparent transparent !important; /* Ajusta el color de la flecha */
+    border-width: 6px 6px 0 6px !important; /* Ajusta el tamaño de la flecha */
+    margin-top: 0.5rem; /* Ajusta la posición vertical */
+}
+
+.select2-container--default.select2-container--focus .select2-selection--single {
+    border-color: var(--md-sys-color-primary) !important;
+    box-shadow: 0 0 0 0.25rem rgba(var(--md-sys-color-primary-rgb), 0.25) !important;
+}
+
+.select2-dropdown {
+    border: 1px solid var(--md-sys-color-outline);
+    border-radius: var(--md-sys-shape-corner-small);
+    background-color: var(--md-sys-color-surface-container-high); /* Superficie ligeramente más oscura para el dropdown */
+    box-shadow: var(--md-sys-elevation-2); /* Agrega elevación */
+}
+
+.select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
+    background-color: var(--md-sys-color-primary-container) !important;
+    color: var(--md-sys-color-on-primary-container) !important;
+}
+
+.select2-container--default .select2-results__option--selected {
+    background-color: var(--md-sys-color-secondary-container) !important;
+    color: var(--md-sys-color-on-secondary-container) !important;
+}
+
+.select2-results__option {
+    color: var(--md-sys-color-on-surface);
+    font-family: var(--md-sys-typescale-font-family);
+    font-size: var(--md-sys-typescale-body-large-font-size);
+}
+
+.img-profile {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  background-color: transparent; /* Fondo transparente */
+  padding: 15px;
+  border-radius: 0 0 15px 15px;
+}
+
+.modal-body {
+  margin: 10px;
+}
+
+.form-label{
+  color: var(--md-sys-color-on-surface) !important; /* Color de texto sobre superficie */
+}
+
+/* Oculta los botones de DataTable si ya no los necesitas */
+.dt-buttons{
+  display: none;
+}
+.dataTables_filter{
+  display: none;
+}
+
+/* Clases de botones Material Design 3 */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: var(--md-sys-shape-corner-small);
+  cursor: pointer;
+  font-family: var(--font-family-label);
+  font-size: var(--font-size-label-large);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-tight);
+  letter-spacing: 0.001rem;
+  text-transform: none;
+  transition: background-color var(--transition-duration-short) var(--transition-easing-standard),
+              box-shadow var(--transition-duration-short) var(--transition-easing-standard),
+              color var(--transition-duration-short) var(--transition-easing-standard);
+  min-height: 4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.button .material-symbols-outlined {
+  font-size: 2rem;
+  margin-right: var(--spacing-xs);
+  color: inherit;
+}
+
+.button--icon-trailing .material-symbols-outlined {
+  margin-right: 0;
+  margin-left: var(--spacing-xs);
+}
+
+.button--primary {
+  background-color: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-primary);
+  box-shadow: var(--md-sys-elevation-1); /* Asumo que tienes variables de elevación */
+}
+.button--primary:hover {
+  background-color: var(--md-sys-color-primary-fixed-dim); /* Necesitas definir esta o usar una variante de primary */
+  box-shadow: var(--md-sys-elevation-2); /* Asumo que tienes variables de elevación */
+}
+.button--primary:active {
+  background-color: var(--md-sys-color-primary-fixed-dim);
+  box-shadow: var(--md-sys-elevation-1);
+}
+.button--primary:disabled {
+  background-color: var(--md-sys-color-on-surface); /* Color en superficie para deshabilitado */
+  color: var(--md-sys-color-surface); /* Color de superficie para texto deshabilitado */
+  opacity: 0.12;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+.button--outlined {
+  background-color: transparent;
+  color: var(--md-sys-color-primary);
+  border: var(--border-width-thin) var(--border-style-solid) var(--md-sys-color-outline);
+  box-shadow: var(--md-sys-elevation-0); /* Asumo que tienes variables de elevación */
+}
+.button--outlined:hover {
+  background-color: var(--md-sys-color-primary-container);
+  border-color: var(--md-sys-color-primary);
+}
+.button--outlined:active {
+  background-color: var(--md-sys-color-primary-container);
+  border-color: var(--md-sys-color-primary);
+}
+.button--outlined:disabled {
+  color: var(--md-sys-color-on-surface);
+  opacity: 0.38;
+  border-color: var(--md-sys-color-on-surface);
+  opacity: 1;
+  cursor: not-allowed;
+}
+
+.button--text {
+  background-color: transparent;
+  color: var(--md-sys-color-primary);
+  box-shadow: var(--md-sys-elevation-0);
+  padding: 1rem 1.2rem;
+}
+.button--text:hover {
+  background-color: var(--md-sys-color-primary-container);
+}
+.button--text:active {
+  background-color: var(--md-sys-color-primary-container);
+}
+.button--text:disabled {
+  color: var(--md-sys-color-on-surface);
+  opacity: 0.38;
+  cursor: not-allowed;
+}
+
+/* Icon Button */
+.icon-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--spacing-xs);
+  border-radius: var(--md-sys-shape-corner-full);
+  color: var(--md-sys-color-on-surface-variant);
+  transition: background-color var(--transition-duration-short) var(--transition-easing-standard),
+              color var(--transition-duration-short) var(--transition-easing-standard);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 4rem;
+  min-height: 4rem;
+}
+.icon-button:hover {
+  background-color: var(--md-sys-color-surface-container-highest);
+}
+.icon-button:active {
+  background-color: var(--md-sys-color-surface-container-high);
+}
+.icon-button:disabled {
+  color: var(--md-sys-color-on-surface);
+  opacity: 0.38;
+  cursor: not-allowed;
+}
+
+.icon-button .material-symbols-outlined {
+  font-size: 2.4rem;
+  margin: 0;
+  color: inherit;
+}
+
+.icon-button--edit {
+  color: var(--md-extended-color-warning-color);
+}
+.icon-button--delete {
+  color: var(--md-extended-color-danger-color);
+}
+.icon-button--view {
+  color: var(--md-extended-color-confirm-color);
+}
+
+/* Ripple effect (requiere JS para la animación) */
+.button .ripple, .icon-button .ripple {
+  position: absolute;
+  border-radius: var(--md-sys-shape-corner-full);
+  transform: scale(0);
+  opacity: 0.5;
+  background-color: currentColor; /* Esto funciona bien con MD3, ya que usa el color actual del botón */
+  animation: ripple-animation var(--transition-duration-medium) linear;
+}
+
+@keyframes ripple-animation {
+  to {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.action-buttons {
+  display: flex;
+  gap: var(--spacing-xs);
+}
+
+/* Para el foco (sin el "&" de SASS) */
+.button:focus-visible {
+  outline: 2px solid var(--md-sys-color-primary);
+  outline-offset: 2px;
+  border-radius: var(--md-sys-shape-corner-small);
+}
+.icon-button:focus-visible {
+  outline: 2px solid var(--md-sys-color-primary);
+  outline-offset: 2px;
+  border-radius: var(--md-sys-shape-corner-full);
+}

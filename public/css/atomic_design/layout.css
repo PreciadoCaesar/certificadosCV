@@ -1,0 +1,105 @@
+/* css/layout.css */
+html, body {
+  height: 100vh;
+  margin: 0;
+}
+
+.app-layout {
+    display: grid;
+    grid-template-columns: 28rem 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+        "header header"
+        "sidebar content";
+    height: 100vh;
+    overflow: hidden;
+  /* muy importante */
+}
+
+
+.main-header {
+  grid-area: header;
+  
+}
+
+.main-sidebar {
+  grid-area: sidebar;
+  overflow: hidden;
+}
+
+.main-content {
+  grid-area: content;
+  height: 100%; /* Esto permite que use el espacio del grid y haga scroll */
+  padding: 1rem;
+  background-color: var(--md-sys-color-background);
+  color: var(--md-sys-color-on-background);
+}
+
+/* ==================================================================== */
+/* Responsive Design: Sidebar para pantallas pequeñas (toggle)        */
+/* ==================================================================== */
+
+/* Usamos los breakpoints definidos en :root */
+@media (max-width: var(--breakpoint-lg)) { /* 1024px -> 64rem (si breakpoint-lg es 992px, usar el más cercano o definir 1024px como un nuevo breakpoint) */
+                                            /* Nota: Material Design suele usar 905px (56.5625rem) como breakpoint para tabletas,
+                                               o 1240px (77.5rem) para la transición de desktop compact a expandido.
+                                               Aquí he mantenido 1024px como tu umbral original, que sería 64rem.
+                                               Asegúrate de que este breakpoint esté definido en tus variables o sea un valor calculado.
+                                               Si usas --breakpoint-lg (992px), el media query sería @media (max-width: var(--breakpoint-lg)). */
+  .app-layout {
+    grid-template-columns: 1fr; /* Una sola columna */
+    grid-template-rows: auto 1fr; /* Header arriba, contenido abajo */
+    grid-template-areas:
+      "header"
+      "content";
+  }
+
+  .main-sidebar {
+    /* Ocultar sidebar por defecto y hacerlo un overlay con JS */
+    position: fixed;
+    top: 0;
+    left: -28rem; /* Ocultar fuera de la vista: -280px -> -17.5rem */
+    bottom: 0;
+    width: 28rem; /* Ancho del sidebar: 280px -> 17.5rem */
+    z-index: var(--z-index-modal); /* Asegurar que esté por encima de todo (z-index: 1001) */
+    box-shadow: var(--md-sys-elevation-3); /* Sombra para que se vea como un drawer */
+    transition: left var(--transition-duration-medium) var(--transition-easing-decelerate); /* Animación de entrada/salida */
+    /* Asegurar que el background-color y color estén definidos aquí o en sidebar.css */
+    background-color: var(--md-sys-color-surface-container-low);
+    color: var(--md-sys-color-on-surface-variant);
+  }
+
+  .main-sidebar--open {
+    left: 0; /* Mostrar el sidebar */
+  }
+
+  /* Opcional: fondo oscuro cuando el sidebar está abierto (overlay/scrim) */
+  .app-layout.sidebar-overlay-active::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--md-sys-color-scrim); /* Fondo oscuro con variable de color */
+    opacity: 0.5; /* Ajustar la opacidad */
+    z-index: var(--z-index-overlay); /* Z-index para el overlay (z-index: 1000) */
+    transition: opacity var(--transition-duration-medium) var(--transition-easing-standard); /* Animación de fade */
+  }
+
+  /* Si quieres que el overlay se desvanezca al cerrar */
+  .app-layout:not(.sidebar-overlay-active)::before {
+    opacity: 0;
+    pointer-events: none; /* Permite clicks a través cuando está oculto */
+  }
+
+  /* Ajuste para el header cuando el sidebar no está en el grid */
+  .main-header {
+    grid-column: 1 / -1; /* Ocupa todo el ancho */
+  }
+}@media (max-width: 480px) { /* 768px -> 48rem */
+  .app-layout {
+    grid-template-columns: 0rem 1fr !important ;/* Sidebar más estrecho */
+  }
+
+}
