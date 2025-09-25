@@ -1,3 +1,4 @@
+# conexion para uson en LOCAL
 <?php
 session_start();
 class Conectar {
@@ -5,8 +6,8 @@ class Conectar {
     protected function conexion() {
         $this->dbh = new PDO(
             "mysql:host=localhost;dbname=u466999701_Certificates;charset=utf8",
-            "u466999701_martin",
-            "#2025CertificatesTec"
+            "root",
+            ""
         );
         return $this->dbh;
     }
