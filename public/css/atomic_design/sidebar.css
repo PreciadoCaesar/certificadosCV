@@ -1,0 +1,482 @@
+/* css/sidebar.css */
+
+.main-sidebar {
+  /* Propiedades de fondo y sombra */
+  background-color: var(--md-sys-color-surface-container-low);
+  color: var(--md-sys-color-on-surface-variant);
+  /* Color de texto general para el sidebar */
+  padding: var(--spacing-l) 0;
+  /* padding: 24px 0 -> 1.5rem 0 */
+  box-shadow: var(--md-sys-elevation-1);
+  /* Sombra sutil si quieres que "flote" un poco */
+
+  /* Layout y Comportamiento */
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  /* Para scroll si el contenido es largo */
+  height: 100vh;
+  /* Asegura que ocupe la altura completa de la ventana */
+  position: sticky;
+  /* O fixed, dependiendo de la necesidad de desplazamiento */
+  top: 0;
+  /* Si es sticky/fixed, asegúrate de que esté arriba */
+}
+
+/* !!! ESTA ES LA DEFINICIÓN CORRECTA Y ÚNICA para sidebar__profile-section !!! */
+.sidebar__profile-section {
+  display: flex;
+  align-items: center;
+  /* Vuelve a 'center' para alinear verticalmente el avatar, info y la flecha */
+  /* Elimina flex-wrap: wrap; si quieres que siempre estén en una sola línea y no bajen */
+  /* Si necesitas que baje en pantallas pequeñas, puedes añadirlo en un media query. */
+  padding: var(--spacing-m) var(--spacing-l);
+  margin-bottom: var(--spacing-m);
+  border-bottom: var(--border-width-thin) var(--border-style-solid) var(--md-sys-color-outline-variant);
+}
+
+.sidebar__profile-avatar {
+  width: var(--spacing-xxl);
+  /* 48px -> 3rem */
+  height: var(--spacing-xxl);
+  /* 48px -> 3rem */
+  border-radius: var(--md-sys-shape-corner-full);
+  /* 50% -> full */
+  object-fit: cover;
+  margin-right: var(--spacing-s);
+  /* 12px -> 0.75rem */
+}
+
+.sidebar__profile-info {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  /* Para que el nombre y email ocupen el espacio y empujen la flecha a la derecha */
+  min-width: 130px;
+  /* Puedes mantenerlo si necesitas un mínimo, pero podría forzar el wrap */
+  max-width: 130px;
+  /* Este max-width es el que podría estar causando que la flecha baje si no hay espacio.
+                             Considera quitarlo o aumentarlo, o si es fijo, gestiona el flex-grow del info. */
+}
+
+.sidebar__profile-name {
+  font-family: var(--font-family-title);
+  font-size: var(--font-size-title-medium);
+  font-weight: var(--font-weight-medium);
+  color: var(--md-sys-color-on-surface);
+  line-height: var(--line-height-normal);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+}
+
+.sidebar__profile-email {
+  font-family: var(--font-family-label);
+  font-size: var(--font-size-label-medium);
+  color: var(--md-sys-color-on-surface-variant);
+  line-height: var(--line-height-normal);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+}
+
+.sidebar-visible {
+  overflow: hidden;
+  height: 100%;
+}
+
+/* ********************************************* */
+/* ESTILOS DEL DROPDOWN DE PERFIL (NUEVOS/AJUSTADOS) */
+/* ********************************************* */
+
+.perfil-dropdown {
+  margin-left: auto;
+  /* Esto empuja el dropdown (la flecha y su contenido) a la derecha */
+  position: relative;
+  /* Mantenlo para que el `perfil-opciones` pueda posicionarse ABSOLUTAMENTE si decides que flote */
+
+  /* ! ELIMINA o COMENTA esta línea ! Esto es lo que empuja el dropdown a una nueva línea */
+  /* flex-basis: 100%; */
+}
+
+.icon-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  color: var(--md-sys-color-on-surface-variant);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--spacing-xxl);
+  height: var(--spacing-xxl);
+  border-radius: var(--md-sys-shape-corner-full);
+  transition: background-color var(--transition-duration-short) var(--transition-easing-standard);
+  /* align-self: flex-start; */
+  /* Esto ya no es necesario si align-items de profile-section es center */
+}
+
+.icon-button:hover {
+  background-color: var(--md-sys-color-surface-container-high);
+}
+
+/* Rotación del icono de flecha */
+.icon-button .material-symbols-outlined {
+  transition: transform 0.3s ease-out;
+}
+
+.icon-button.rotated .material-symbols-outlined {
+  transform: rotate(180deg);
+}
+
+
+.perfil-opciones {
+  /* ESTILOS PARA OCULTAR POR DEFECTO */
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.3s ease-out, opacity 0.3s ease-out, padding 0.3s ease-out;
+  /* padding: 0 var(--spacing-l); */
+  /* Mantén esto si quieres padding en el desplegable */
+  box-sizing: border-box;
+  width: 100%;
+  /* El dropdown en sí seguirá ocupando el 100% del ancho de .perfil-dropdown */
+  margin-top: var(--spacing-s);
+
+  /* NUEVO: Posiciona el contenido del dropdown ABSOLUTAMENTE */
+  position: absolute;
+  top: 100%;
+  /* Coloca el dropdown justo debajo del botón de la flecha */
+  right: 0;
+  /* Alinea el dropdown a la derecha del botón */
+  left: auto;
+  /* Asegura que no tenga 'left: 0' por defecto */
+  min-width: 150px;
+  /* Dale un ancho mínimo al desplegable para que el botón se vea bien */
+  background-color: var(--md-sys-color-surface-container-low);
+  /* Fondo para que se vea */
+  box-shadow: var(--md-sys-elevation-2);
+  /* Sombra para que "flote" */
+  border-radius: var(--md-sys-shape-corner-medium);
+  z-index: 100;
+  /* Asegura que esté por encima de otros elementos */
+  padding: var(--spacing-s);
+  /* Padding interno del menú desplegable */
+
+  /* IMPORTANTE: Si usas `position: absolute`, el `max-height` animará el contenido,
+       pero NO empujará los elementos de abajo (`.sidebar__navigation`).
+       Si quieres que empuje, no uses `position: absolute` aquí y tendrías que
+       estructurar el HTML de manera diferente (que `.perfil-dropdown` sea un bloque
+       separado en la sección de perfil y no un elemento flex en la misma línea).
+       Con la imagen que me mostraste, la idea es que FLOTE. */
+}
+
+.perfil-opciones.is-active {
+  max-height: 100px;
+  /* Asegúrate de que sea suficiente para el contenido del botón */
+  opacity: 1;
+  /* padding-bottom: var(--spacing-m); */
+  /* Si ya tienes padding en el .perfil-opciones normal, ajústalo. */
+}
+
+.boton-menu {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  /* Alinea el contenido del botón a la izquierda */
+  width: 100%;
+  /* Ocupa el 100% del ancho de su contenedor (.perfil-opciones) */
+  padding: var(--spacing-xs) var(--spacing-m);
+  margin: 0;
+  /* Asegura que no tenga márgenes que lo separen del borde del dropdown */
+  border: none;
+  /* Elimina el borde si lo quieres como en la imagen final */
+  background-color: transparent;
+  /* Fondo transparente por defecto */
+  color: var(--md-sys-color-on-surface);
+  cursor: pointer;
+  text-align: left;
+  border-radius: var(--md-sys-shape-corner-small);
+  transition: background-color var(--transition-duration-short) var(--transition-easing-standard), color var(--transition-duration-short) var(--transition-easing-standard);
+}
+
+.boton-menu:hover {
+  background-color: var(--md-sys-color-surface-container-high);
+  /* Un color de fondo al pasar el ratón */
+  /* border-color: var(--md-sys-color-primary); */
+  /* Quita esto si el botón no tiene borde */
+}
+
+.boton-menu i {
+  margin-right: var(--spacing-xs);
+}
+
+/* ********************************************* */
+/* EL RESTO DE TUS ESTILOS EXISTENTES (NO DUPLICADOS) */
+/* ********************************************* */
+
+.sidebar__menu-category {
+  font-family: var(--font-family-label);
+  /* Label Medium M3 */
+  font-size: var(--font-size-label-medium);
+  /* 12px -> 0.75rem */
+  font-weight: var(--font-weight-bold);
+  /* 700 */
+  color: var(--md-sys-color-on-surface-variant);
+  text-transform: uppercase;
+  padding: var(--spacing-xs) var(--spacing-l);
+  /* 8px 24px -> 0.5rem 1.5rem */
+  margin-top: var(--spacing-m);
+  /* 16px -> 1rem */
+  margin-bottom: var(--spacing-xxs);
+  /* 4px -> 0.25rem */
+}
+
+.sidebar__navigation {
+  flex-grow: 1;
+  /* Para que la navegación ocupe el espacio restante y el Centro de Ayuda vaya abajo */
+  padding: 0 var(--spacing-s) 0 var(--spacing-s);
+  /* padding: 0px 12px 0px 12px -> 0rem 0.75rem 0rem 0.75rem */
+}
+
+.sidebar__menu-item {
+  display: flex;
+  align-items: center;
+  padding: 0.625rem var(--spacing-l);
+  /* 10px 24px -> 0.625rem 1.5rem. 10px no era un múltiplo exacto de 4/8, así que se usa el valor exacto en rem */
+  cursor: pointer;
+  color: var(--md-sys-color-on-surface-variant);
+  text-decoration: none;
+  transition: background-color var(--transition-duration-short) var(--transition-easing-standard),
+    color var(--transition-duration-short) var(--transition-easing-standard);
+  /* Transiciones con variables */
+  border-radius: var(--md-sys-shape-corner-medium);
+  /* 10px -> 0.625rem (Si quieres 10px exactos) */
+  margin-right: var(--spacing-m);
+  /* 16px -> 1rem. Este margen es para que el redondeado no corte si el sidebar tiene ancho fijo. */
+}
+
+.sidebar__menu-item:hover {
+  background-color: var(--md-sys-color-surface-container-highest);
+  color: var(--md-sys-color-on-surface);
+}
+
+.sidebar__menu-item--active {
+  background-color: var(--md-sys-color-secondary-container);
+  /* Color de acento para el item activo */
+  color: var(--md-sys-color-on-secondary-container);
+  font-weight: var(--font-weight-medium);
+  /* 500 */
+}
+
+.sidebar__menu-item--active .material-symbols-outlined {
+  color: var(--md-sys-color-on-secondary-container);
+  /* Asegurar color del icono activo */
+}
+
+.sidebar__menu-item .material-symbols-outlined {
+  font-size: 2.5rem;
+  /* 20px -> 1.25rem */
+  margin-right: var(--spacing-s);
+  /* 12px -> 0.75rem */
+  color: inherit;
+  /* Heredar el color del texto del item */
+}
+
+.sidebar__menu-item-text {
+  font-family: var(--font-family-body);
+  /* Body Large M3 */
+  font-size: var(--font-size-body-large);
+  /* 16px -> 1rem */
+  line-height: var(--line-height-normal);
+  /* 24px -> 1.5rem (basado en line-height normal) */
+}
+.sidebar__bottom-link-group{
+ display: flex;
+ flex-direction: column;
+ justify-content: center; 
+ padding: 0 var(--spacing-s) 0 var(--spacing-s);
+}
+.sidebar__bottom-link {
+  margin-top: auto;
+  /* Empuja el elemento al final del flex container */
+  padding: var(--spacing-m) var(--spacing-l);
+  /* 16px 24px -> 1rem 1.5rem */
+  display: flex;
+  align-items: center;
+  color: var(--md-sys-color-on-surface-variant);
+  text-decoration: none;
+  transition: background-color var(--transition-duration-short) var(--transition-easing-standard);
+  /* Transiciones con variables */
+}
+
+.sidebar__bottom-link:hover {
+  background-color: var(--md-sys-color-surface-container-highest);
+}
+
+.sidebar__bottom-link .material-symbols-outlined {
+  font-size: 1.25rem;
+  /* 20px -> 1.25rem */
+  margin-right: var(--spacing-s);
+  /* 12px -> 0.75rem */
+}
+
+/* ==================================================================== */
+/* Mejoras de Accesibilidad y Comportamiento (UX/UI)                  */
+/* ==================================================================== */
+
+/* Asegurar un outline visible para la navegación con teclado */
+.sidebar__menu-item:focus-visible,
+.sidebar__bottom-link:focus-visible {
+  outline: 2px solid var(--md-sys-color-primary);
+  outline-offset: 2px;
+  border-radius: var(--md-sys-shape-corner-medium);
+  /* Para que el outline respete los bordes */
+}
+
+
+
+/*Menu plegable*/
+/* Botón siempre visible en escritorio */
+.header__menu-toggle-button {
+  display: block !important;
+  margin-right: 15px;
+}
+
+/* Estado expandido (por defecto) */
+.main-sidebar {
+  transition: width 0.3s ease;
+  height: 100%;
+}
+
+/* Estado contraído */
+.main-sidebar.main-sidebar--collapsed {
+  width: 70px;
+  padding: 12px 0px;
+}
+
+/* Contenido del menú en estado expandido */
+.sidebar__profile-info,
+.sidebar__menu-item-text,
+.sidebar__bottom-link-text,
+.sidebar__menu-category,
+.perfil-dropdown {
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Contenido del menú en estado contraído */
+.main-sidebar--collapsed .sidebar__profile-info,
+.main-sidebar--collapsed .sidebar__menu-item-text,
+.main-sidebar--collapsed .sidebar__bottom-link-text,
+.main-sidebar--collapsed .sidebar__menu-category,
+.main-sidebar--collapsed .perfil-dropdown {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+}
+
+/* Ajustes para iconos centrados */
+.main-sidebar--collapsed .sidebar__menu-item {
+  justify-content: center;
+}
+
+.main-sidebar--collapsed .sidebar__menu-item .material-symbols-outlined {
+  margin-right: 0;
+}
+
+/* Avatar más pequeño en estado contraído */
+.main-sidebar--collapsed .sidebar__profile-avatar {
+  width: 40px;
+  height: 40px;
+}
+
+/* Ajuste del contenido principal */
+.sidebar-collapsed .main-content {
+  margin-left: 0px !important;
+}
+
+/* Versión móvil (se mantiene igual que antes) */
+@media (max-width: 768px) {
+  .main-sidebar {
+    width: 270px !important;
+    z-index: 999999;
+  }
+
+  .main-sidebar.main-sidebar--collapsed {
+    transform: translateX(-100%);
+  }
+
+  .main-sidebar.main-sidebar--visible {
+    transform: translateX(0);
+  }
+
+  .page-wrapper{
+    max-width: 100%;
+  }
+
+  .sidebar-visible::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+  }
+
+  .sidebar-collapsed .app-layout {
+    grid-template-columns: 1rem 1fr;
+    /* 280px -> 17.5rem */
+    
+  }
+  .sidebar-collapsed .main-content{
+    padding: 0px 20px;
+  }
+}
+
+
+
+/* Transición suave para el contenido principal */
+.main-content {
+  transition: margin-left 0.3s ease;
+}
+
+.sidebar-collapsed .main-content {
+  width: calc(100%);
+}
+
+.sidebar-collapsed .app-layout {
+  grid-template-columns: 7rem 1fr;
+  /* 280px -> 17.5rem */
+}
+
+
+.sidebar-collapsed .sidebar__menu-item .material-symbols-outlined {
+  font-size: 2.5rem;
+  /* 20px -> 1.25rem */
+}
+
+.sidebar-collapsed .sidebar__profile-section {
+  padding: 12px 16px;
+}
+
+/* Ajuste para el logo en header */
+.header__logo {
+  transition: opacity 0.3s ease;
+}
+
+.sidebar-collapsed .header__logo {
+  opacity: 0;
+  width: 0;
+  padding: 0;
+}
+
+/* Mantener botón visible en escritorio */
+.header__menu-toggle-button {
+  display: block !important;
+}

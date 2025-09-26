@@ -1,0 +1,35 @@
+/* css/base.css */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--md-sys-color-on-background);
+    background-color: var(--md-sys-color-background);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth; /* Desplazamiento suave */
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    font-family: var(--font-label); /* Usa la fuente de Label de M3 para botones */
+}
+
+/* Base para los íconos de Material Symbols */
+.material-symbols-outlined {
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24;
+    vertical-align: middle; /* Para alinear íconos con texto */
+    display: inline-block; /* Asegura que el tamaño se respete */
+}
