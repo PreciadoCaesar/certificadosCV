@@ -12,7 +12,7 @@ if (!isset($_SESSION["ID_administrador"]) && !isset($_SESSION["ID_gerente"])) {
 
 <head>
     <?php require_once BASE_PATH . '/view/html/MainHead.php'; ?>
-    <title>Gestión de Cursos</title>
+    <title>Gestión de Cursosss</title>
     <?php require_once BASE_PATH . '/view/html/MainCss.php'; ?>
 </head>
 
