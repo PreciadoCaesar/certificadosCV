@@ -68,7 +68,7 @@ $(document).ready(function () {
                 ctx.font = '30px Arial';
                 // Dividir el nombre del curso en líneas para mejor presentación
                 const nombreCurso = data.nombre_curso;
-                const maxAncho = canvas.width - 100; 
+                const maxAncho = canvas.width - 75; //ancho anterior = 100, actualizado para que ocupe menos ancho.
                 const lineasCurso = dividirTextoEnLineas(ctx, nombreCurso, maxAncho);
                 
                 let yInicial = 220;
