@@ -15,7 +15,7 @@ class Conectar {
         $this->dbh->exec("SET NAMES 'utf8'");
     }
     public static function ruta(): string {
-        return "http://localhost/certifiaco/";
+        return "http://localhost/certificado/";
     }
 }
 
