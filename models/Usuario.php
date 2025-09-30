@@ -14,7 +14,7 @@ class Usuario extends Conectar {
         $pass   = $_POST["password"];
 
         if (empty($correo) || empty($pass)) {
-            header("Location:" . Conectar::ruta() . "index.php?m=2");
+            header("Location: ".Conectar::ruta()."view/AdminMntInicio/");
             exit();
         } else {
             // -- LOGIN ADMINISTRADOR --

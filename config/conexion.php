@@ -1,4 +1,3 @@
-# conexion para uson en LOCAL
 <?php
 session_start();
 class Conectar {
@@ -15,7 +14,7 @@ class Conectar {
         $this->dbh->exec("SET NAMES 'utf8'");
     }
     public static function ruta(): string {
-        return "http://localhost/certificado/";
+        return "http://localhost/certificadosCV/";
     }
 }
 
@@ -25,3 +24,4 @@ if (!defined('BASE_URL')) {
 if (!defined('BASE_PATH')) {
     define('BASE_PATH', realpath(__DIR__ . '/..'));
 }
+?>
