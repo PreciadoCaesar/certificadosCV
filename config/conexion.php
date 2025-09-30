@@ -1,4 +1,3 @@
-# conexion para uson en LOCAL
 <?php
 session_start();
 class Conectar {
