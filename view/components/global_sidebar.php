@@ -81,19 +81,19 @@ function isActiveMenuItem($menuUrl, $currentRelativePath) {
     <?php
     // Definir los elementos del menú en un array
     $menuItems = [
-        ['url' => BASE_URL . 'AdminMntInicio/', 'icon' => 'home', 'text' => 'Inicio'],
-        ['url' => BASE_URL . 'AdminMntUsuario/', 'icon' => 'group', 'text' => 'Usuarios'],
-        ['url' => BASE_URL . 'AdminMntCategoria/', 'icon' => 'category', 'text' => 'Categorías'],
-        ['url' => BASE_URL . 'AdminMntInstructor/', 'icon' => 'face', 'text' => 'Instructores'],
-        ['url' => BASE_URL . 'AdminMntCurso/', 'icon' => 'menu_book', 'text' => 'Cursos'],
-        ['url' => BASE_URL . 'AdminDetalleCertificado/', 'icon' => 'school', 'text' => 'Certificado'],
-        ['url' => BASE_URL . 'AdminHistorialAcciones/', 'icon' => 'history', 'text' => 'Historial de acciones'],
+        ['url' => BASE_URL . 'view/AdminMntInicio/', 'icon' => 'home', 'text' => 'Inicio'],
+        ['url' => BASE_URL . 'view/AdminMntUsuario/', 'icon' => 'group', 'text' => 'Usuarios'],
+        ['url' => BASE_URL . 'view/AdminMntCategoria/', 'icon' => 'category', 'text' => 'Categorías'],
+        ['url' => BASE_URL . 'view/AdminMntInstructor/', 'icon' => 'face', 'text' => 'Instructores'],
+        ['url' => BASE_URL . 'view/AdminMntCurso/', 'icon' => 'menu_book', 'text' => 'Cursos'],
+        ['url' => BASE_URL . 'view/AdminDetalleCertificado/', 'icon' => 'school', 'text' => 'Certificado'],
+        ['url' => BASE_URL . 'view/AdminHistorialAcciones/', 'icon' => 'history', 'text' => 'Historial de acciones'],
     ];
 
     // Si existe la sesión de gerente, agregamos la opción de Administradores
     if (isset($_SESSION['ID_gerente'])) {
         $menuItems[] = [
-            'url' => BASE_URL . 'AdminMntAdmin/',
+            'url' => BASE_URL . 'view/AdminMntAdmin/',
             'icon' => 'person',
             'text' => 'Administradores'
         ];
