@@ -1,10 +1,13 @@
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
+canvas.width = 900;
+canvas.height = 650;
 
 const image = new Image();
 const qrTemp = document.createElement('canvas');
 const qrCtx = qrTemp.getContext('2d');
 const CERTIFICATE_BASE_URL = 'http://localhost/certificado/';
+//const CERTIFICATE_BASE_URL = 'http://192.168.1.39/certificado/'; pruebas local
 let certificadoCargadoCorrectamente = false;
 
 
@@ -147,6 +150,16 @@ $(document).ready(function () {
                     ctx.textBaseline = 'top';
                     ctx.fillText("JHOEL FERNANDEZ A.", xFirma + (firmaWidth / 2), yFirma + firmaHeight + 5);
                     ctx.fillText("GERENTE GENERAL", xFirma + (firmaWidth / 2), yFirma + firmaHeight + 25);
+
+                    //// prueba cambio de flujo
+                    //const btnPngLink = document.getElementById('btnpng');
+                    //btnPngLink.href = canvas.toDataURL('image/png');
+                    //
+                    //// Activa ambos botones quitando la clase 'disabled'
+                    //$('#btnpng').removeClass('disabled');
+                    //$('#btnpdf').removeClass('disabled');
+                    //// Marca el certificado como cargado
+                    //certificadoCargadoCorrectamente = true;
                 };
                 firma.src = BASE_URL + "view/Certificado/firma.jpg";
 
