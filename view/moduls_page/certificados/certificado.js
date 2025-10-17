@@ -6,106 +6,68 @@ function init(){}
 let table;
 
 $(document).ready(function () {
-  combo_curso(); // Llenar combo
+    combo_curso(); // Llenar combo
 
-  // Inicializar tabla al cargar
-  table = $('#detalle_data').DataTable({
-    processing: true,
-    serverSide: false,
-    dom: 'Bfrtip',
-    buttons: [
-  {
-    extend: 'copy',
-    className: 'copyButton'
-  },
-  {
-    extend: 'excel',
-    className: 'excelButton'
-  },
-  {
-    extend: 'csv',
-    className: 'csvButton'
-  },
-  {
-    extend: 'pdf',
-    className: 'pdfButton'
-  }
-]
-,
-    ajax: {
-      url: BASE_URL + 'controller/usuario.php?op=listar_cursos_usuario',
-      type: 'POST',
-      data: function (d) {
-        const cursoID = $('#cur_id').val();
-        if (cursoID) {
-          d.cur_id = cursoID;
+    // Inicializar tabla al cargar
+    table = $('#detalle_data').DataTable({
+        processing: true,
+        serverSide: false,
+        dom: 'Bfrtip',
+        buttons: [
+            { extend: 'copy', className: 'copyButton' },
+            { extend: 'excel', className: 'excelButton' },
+            { extend: 'csv', className: 'csvButton' },
+            { extend: 'pdf', className: 'pdfButton' }
+        ],
+        ajax: {
+            url: BASE_URL + 'controller/usuario.php?op=listar_cursos_usuario',
+            type: 'POST',
+            data: function (d) {
+                const cursoID = $('#cur_id').val();
+                if (cursoID) {
+                    d.cur_id = cursoID;
+                }
+            },
+            dataType: 'json',
+            xhrFields: { withCredentials: true },
+            dataSrc: function (json) { return json.aaData; }
+        },
+        responsive: true,
+        pageLength: 10,
+        order: [[0, 'desc']],
+        language: {
+            sProcessing: "Procesando...",
+            sLengthMenu: "Mostrar _MENU_ registros",
+            sZeroRecords: "No se encontraron resultados",
+            sEmptyTable: "Ningún dato disponible en esta tabla",
+            sInfo: "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            sInfoEmpty: "Mostrando registros del 0 al 0 de un total de 0 registros",
+            sInfoFiltered: "(filtrado de un total de _MAX_ registros)",
+            sSearch: "Buscar:",
+            oPaginate: { sFirst: "Primero", sLast: "Último", sNext: "Siguiente", sPrevious: "Anterior" }
         }
-        // Si no se selecciona nada, no se pasa cur_id => trae todos
-      },
-      dataType: 'json',
-      xhrFields: { withCredentials: true },
-      dataSrc: function (json) {
-        console.log(json);
-        return json.aaData;
-      }
-    },
-    responsive: true,
-    pageLength: 10,
-    order: [[0, 'desc']],
-    language: {
-      sProcessing: "Procesando...",
-      sLengthMenu: "Mostrar _MENU_ registros",
-      sZeroRecords: "No se encontraron resultados",
-      sEmptyTable: "Ningún dato disponible en esta tabla",
-      sInfo: "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-      sInfoEmpty: "Mostrando registros del 0 al 0 de un total de 0 registros",
-      sInfoFiltered: "(filtrado de un total de _MAX_ registros)",
-      sSearch: "Buscar:",
-      oPaginate: {
-        sFirst: "Primero",
-        sLast: "Último",
-        sNext: "Siguiente",
-        sPrevious: "Anterior"
-      }
-    }
-  });
+    });
 
-  // Al cambiar el combo de curso
-  $('#cur_id').change(function () {
-    const cur_id = $(this).val();
+    // Al cambiar el combo de curso
+    $('#cur_id').change(function () {
+        table.ajax.reload();
+    });
 
+    // Botones externos
+    $('#btnCopiar').on('click', function () { table.button('.copyButton').trigger(); });
+    $('#btnExcel').on('click', function () { table.button('.excelButton').trigger(); });
+    $('#btnCSV').on('click', function () { table.button('.csvButton').trigger(); });
+    $('#btnPDF').on('click', function () { table.button('.pdfButton').trigger(); });
 
-    // Recargar con filtro de curso
-    table.ajax.reload();
-  });
+    // Búsqueda personalizada
+    $('#search-table-principal').on('keyup change', function () {
+        if ($.fn.DataTable.isDataTable('#detalle_data')) table.search(this.value).draw();
+    });
 
-  // Botones externos
-  $('#btnCopiar').on('click', function () {
-    table.button('.copyButton').trigger();
-  });
-  $('#btnExcel').on('click', function () {
-    table.button('.excelButton').trigger();
-  });
-  $('#btnCSV').on('click', function () {
-    table.button('.csvButton').trigger();
-  });
-  $('#btnPDF').on('click', function () {
-    table.button('.pdfButton').trigger();
-  });
+    // Paginación personalizada
+    table.on('draw', function () { updateCustomPagination(); });
 
-  // Búsqueda personalizada
-  $('#search-table-principal').on('keyup change', function () {
-    if ($.fn.DataTable.isDataTable('#detalle_data')) {
-      table.search(this.value).draw();
-    }
-  });
-
-  // Paginación personalizada
-  table.on('draw', function () {
-    updateCustomPagination();
-  });
-
-  function updateCustomPagination() {
+    function updateCustomPagination() {
     const pageInfo = table.page.info();
     const currentPage = pageInfo.page;
     const totalPages = pageInfo.pages;
@@ -176,6 +138,7 @@ $(document).ready(function () {
       })
       .appendTo(container);
   }
+  
 });
 
 

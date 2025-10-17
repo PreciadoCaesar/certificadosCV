@@ -1,5 +1,15 @@
 $(document).ready(function() {
 
+// pequeño debounce para resize
+function debounce(fn, wait) {
+  let t;
+  return function () {
+    const ctx = this, args = arguments;
+    clearTimeout(t);
+    t = setTimeout(function () { fn.apply(ctx, args); }, wait);
+  };
+}
+
 // 1. Tabla de Cursos
 // Inicialización de la tabla
 let tablaCursos = $('#tabla_cursos').DataTable({
@@ -48,6 +58,8 @@ let tablaCursos = $('#tabla_cursos').DataTable({
     type: "GET",
     dataSrc: ""
   },
+  responsive: true,
+  autoWidth: false,
   columns: [
     { data: "foto" },
     { data: "cur_nom" },
@@ -60,6 +72,9 @@ let tablaCursos = $('#tabla_cursos').DataTable({
     url: "//cdn.datatables.net/plug-ins/1.11.5/i18n/Spanish.json"
   }
 });
+
+// Exponer en window para poder ajustar desde funciones globales
+window.tablaCursos = tablaCursos;
 
 // Botones externos enlazados correctamente
 tablaCursos.on('init.dt', function () {
@@ -165,6 +180,13 @@ $('#search-user-input-inicursos').on('keyup', function () {
     tablaInstructores.search(this.value).draw();
   });
 });
+// Forzar ajuste al inicializar instructores
+tablaInstructores.on('init.dt', function () {
+  try { tablaInstructores.columns.adjust(); if (tablaInstructores.responsive) tablaInstructores.responsive.recalc(); } catch (e) {}
+});
+
+// Exponer tabla instructores
+window.tablaInstructores = tablaInstructores;
 
 
 
@@ -215,6 +237,7 @@ $('#search-user-input-inicursos').on('keyup', function () {
     info: false,
     paging: true,
     responsive: true,
+    autoWidth: false,
     ajax: {
       url: BASE_URL + 'controller/usuario.php?op=usuarios_activos',
       type: "GET",
@@ -252,6 +275,33 @@ tablaUsuarios.on('init.dt', function () {
     tablaUsuarios.search(this.value).draw();
   });
 });
+// Forzar ajuste al inicializar usuarios
+tablaUsuarios.on('init.dt', function () {
+  try { tablaUsuarios.columns.adjust(); if (tablaUsuarios.responsive) tablaUsuarios.responsive.recalc(); } catch (e) {}
+});
+
+// Exponer tabla usuarios
+window.tablaUsuarios = tablaUsuarios;
+
+// Ajustar tablas al redimensionar la ventana
+window.addEventListener('resize', debounce(function () {
+  try {
+    if (window.tablaCursos && typeof window.tablaCursos.columns === 'function') {
+      window.tablaCursos.columns.adjust();
+      if (window.tablaCursos.responsive && typeof window.tablaCursos.responsive.recalc === 'function') window.tablaCursos.responsive.recalc();
+    }
+    if (window.tablaInstructores && typeof window.tablaInstructores.columns === 'function') {
+      window.tablaInstructores.columns.adjust();
+      if (window.tablaInstructores.responsive && typeof window.tablaInstructores.responsive.recalc === 'function') window.tablaInstructores.responsive.recalc();
+    }
+    if (window.tablaUsuarios && typeof window.tablaUsuarios.columns === 'function') {
+      window.tablaUsuarios.columns.adjust();
+      if (window.tablaUsuarios.responsive && typeof window.tablaUsuarios.responsive.recalc === 'function') window.tablaUsuarios.responsive.recalc();
+    }
+  } catch (e) {
+    console.warn('Error ajustando tablas en resize', e);
+  }
+}, 150));
 });
 
 // Funciones para mostrar/ocultar secciones
@@ -259,18 +309,37 @@ function mostrarCursos() {
   document.getElementById("cursos").style.display = "block";
   document.getElementById("instructores").style.display = "none";
   document.getElementById("usuarios").style.display = "none";
+  // Ajustar tabla visible
+  setTimeout(function () {
+    if (window.tablaCursos && typeof window.tablaCursos.columns === 'function') {
+      window.tablaCursos.columns.adjust();
+      if (window.tablaCursos.responsive && typeof window.tablaCursos.responsive.recalc === 'function') window.tablaCursos.responsive.recalc();
+    }
+  }, 50);
 }
 
 function mostrarInstructores() {
   document.getElementById("cursos").style.display = "none";
   document.getElementById("instructores").style.display = "block";
   document.getElementById("usuarios").style.display = "none";
+  setTimeout(function () {
+    if (window.tablaInstructores && typeof window.tablaInstructores.columns === 'function') {
+      window.tablaInstructores.columns.adjust();
+      if (window.tablaInstructores.responsive && typeof window.tablaInstructores.responsive.recalc === 'function') window.tablaInstructores.responsive.recalc();
+    }
+  }, 50);
 }
 
 function mostrarUsuarios() {
   document.getElementById("cursos").style.display = "none";
   document.getElementById("instructores").style.display = "none";
   document.getElementById("usuarios").style.display = "block";
+  setTimeout(function () {
+    if (window.tablaUsuarios && typeof window.tablaUsuarios.columns === 'function') {
+      window.tablaUsuarios.columns.adjust();
+      if (window.tablaUsuarios.responsive && typeof window.tablaUsuarios.responsive.recalc === 'function') window.tablaUsuarios.responsive.recalc();
+    }
+  }, 50);
 }
 
 $(document).ready(function () {

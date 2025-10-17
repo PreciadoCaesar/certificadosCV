@@ -89,6 +89,15 @@
                     <div class="table-container">
                         <table id="tabla_cursos" class="data-table" role="grid" aria-describedby="table-caption">
                             <caption id="table-caption" class="visually-hidden">Tabla de cursos registradas</caption>
+                            <!-- Anchos definidos: Foto | Nombre | Fecha Inicio | Fecha Final | Instructor | Temario -->
+                            <colgroup>
+                                <col style="width:8%" />
+                                <col style="width:38%" />
+                                <col style="width:12%" />
+                                <col style="width:12%" />
+                                <col style="width:20%" />
+                                <col style="width:10%" />
+                            </colgroup>
                             <thead class="data-table__header">
                                 <tr>
                                     <th scope="col" class="data-table__th">Foto</th>
@@ -151,6 +160,15 @@
                     <div class="table-container">
                         <table id="tabla_instructores" class="data-table" role="grid" aria-describedby="table-caption">
                             <caption id="table-caption" class="visually-hidden">Tabla de instructores registrados</caption>
+                            <!-- Anchos definidos: Foto | Nombre | Ape P | Ape M | Telefono | Correo -->
+                            <colgroup>
+                                <col style="width:8%" />
+                                <col style="width:30%" />
+                                <col style="width:18%" />
+                                <col style="width:18%" />
+                                <col style="width:12%" />
+                                <col style="width:14%" />
+                            </colgroup>
                             <thead class="data-table__header">
                                 <tr>
                                     <th scope="col" class="data-table__th">Foto</th>
@@ -215,6 +233,15 @@
                     <div class="table-container">
                         <table id="tabla_usuarios" class="data-table" role="grid" aria-describedby="table-caption">
                             <caption id="table-caption" class="visually-hidden">Tabla de administradores registrados</caption>
+                            <!-- Anchos definidos: Foto | Nombre | Ape P | Ape M | Telefono | Correo -->
+                            <colgroup>
+                                <col style="width:8%" />
+                                <col style="width:30%" />
+                                <col style="width:18%" />
+                                <col style="width:18%" />
+                                <col style="width:12%" />
+                                <col style="width:14%" />
+                            </colgroup>
                             <thead class="data-table__header">
                                 <tr>
                                     <th scope="col" class="data-table__th">Foto</th>
@@ -244,3 +271,12 @@
             </main>
         </div><!-- .table-group-panel -->
     </div><!-- .page-wrapper -->
+        <style>
+        /* Forzar ancho de columnas según colgroup y evitar scroll horizontal */
+        .table-container { overflow-x: hidden; }
+        .data-table { table-layout: fixed; width: 100%; }
+        .data-table th, .data-table td { white-space: normal; word-break: break-word; overflow: visible; }
+        /* Evitar que las imágenes forcen el ancho de la columna */
+        .data-table td img, .data-table td .avatar, .data-table td .card__icon-box img { max-width: 44px; max-height: 44px; width: auto; height: auto; display: inline-block; }
+        .data-table td .avatar { border-radius: 50%; }
+        </style>

@@ -13,7 +13,7 @@
         <section class="section-header">
             <div class="section-header__text">
                 <h2 class="section-header__title">Cursos</h2>
-                <p class="section-header__description">Aquí podrá gestionar la lista completa de cursos registrados</p>
+                <p class="section-header__description">Aquíiiiii podrá gestionar la lista completa de cursos registrados</p>
             </div>
             <?php if (
                                     (isset($_SESSION["rol"]) && $_SESSION["rol"] === "gerente") ||

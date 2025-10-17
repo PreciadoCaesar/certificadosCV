@@ -4,7 +4,7 @@ const ctx = canvas.getContext('2d');
 const image = new Image();
 const qrTemp = document.createElement('canvas');
 const qrCtx = qrTemp.getContext('2d');
-const CERTIFICATE_BASE_URL = 'https://certificadoprueba.hivedigitalworks.com/';
+const CERTIFICATE_BASE_URL = 'http://localhost/certificado';
 let certificadoCargadoCorrectamente = false;
 
 
