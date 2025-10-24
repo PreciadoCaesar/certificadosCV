@@ -4,7 +4,7 @@ const ctx = canvas.getContext('2d');
 const image = new Image();
 const qrTemp = document.createElement('canvas');
 const qrCtx = qrTemp.getContext('2d');
-const CERTIFICATE_BASE_URL = 'https://certificadoprueba.hivedigitalworks.com/';
+const CERTIFICATE_BASE_URL = 'http://localhost/certificado/';
 let certificadoCargadoCorrectamente = false;
 
 
@@ -132,22 +132,23 @@ $(document).ready(function () {
                 
                 const firma = new Image();
                 firma.onload = function () {
-                    const firmaWidth = 150;
-                    const firmaHeight = 100;
-                    // Posicionar la firma debajo de la nota final obtenida
-                    const xFirma = (canvas.width / 2) - (firmaWidth / 2); // Centrada horizontalmente
-                    const yFirma = yTexto1 + 130; // Debajo de la nota final con espaciado
+    const firmaWidth = 150;
+    const firmaHeight = 100;
+    // Posicionar la firma más a la izquierda
+    const xFirma = 100; // <-- AJUSTA este valor según lo que quieras
+    const yFirma = yTexto1 + 130; 
 
-                    ctx.drawImage(firma, xFirma, yFirma, firmaWidth, firmaHeight);
-                    
-                    // Agregar texto de identificación debajo de la firma
-                    ctx.font = '14px Arial';
-                    ctx.fillStyle = '#000';
-                    ctx.textAlign = "center";
-                    ctx.textBaseline = 'top';
-                    ctx.fillText("JHOEL FERNANDEZ A.", xFirma + (firmaWidth / 2), yFirma + firmaHeight + 5);
-                    ctx.fillText("GERENTE GENERAL", xFirma + (firmaWidth / 2), yFirma + firmaHeight + 25);
-                };
+    ctx.drawImage(firma, xFirma, yFirma, firmaWidth, firmaHeight);
+
+    // Agregar texto de identificación debajo de la firma
+    ctx.font = '14px Arial';
+    ctx.fillStyle = '#000';
+    ctx.textAlign = "center";
+    ctx.textBaseline = 'top';
+    ctx.fillText("JHOEL FERNANDEZ A.", xFirma + (firmaWidth / 2), yFirma + firmaHeight + 5);
+    ctx.fillText("GERENTE GENERAL", xFirma + (firmaWidth / 2), yFirma + firmaHeight + 25);
+};
+
                 firma.src = BASE_URL + "view/Certificado/firma.jpg";
 
                 // Mover el código QR hacia la derecha

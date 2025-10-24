@@ -1,5 +1,5 @@
 <?php
-define('BASE_URL', 'https://certificados.consigueventas.com/');
+define('BASE_URL', 'http://localhost/certificado/');
 ?>
 <!DOCTYPE html>
 <html lang="es">
